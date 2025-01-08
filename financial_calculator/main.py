@@ -14,14 +14,19 @@
 def main():
     pass
 
-Income = 0
+def saveingcalculator():
 
-
-
-def saveingcalculator(Income):
+    #Inputs for the needed variables
+    Income = input("What is your weekly income.")
     MoneySavedGoal = input("How much money do you want to save?\t")
     WeeklyDepositAmount =  input("How much are you going to deposit each week.")
+
+    #Making sure the amount is valid
     if WeeklyDepositAmount > Income:
         print("You can not deposit that amount per week")
     elif WeeklyDepositAmount <=0:
         print("You aren't depositing anything.")
+    
+    print("It will take", MoneySavedGoal/WeeklyDepositAmount)
+
+Desiction = input("What do you want to do?(1:Calculate savings, 2:Coumpound Interest Calculator, 3:Budget Allocator, 4:Sale Prive Calculator, 5:Tip Calculator)")
