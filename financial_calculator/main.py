@@ -14,19 +14,41 @@ while True:
 
 
     def saveingcalculator():
-
-        #Inputs for the needed variables
-        Income = int(input("\nWhat is your weekly income.\t"))
-        MoneySavedGoal = int(input("\nHow much money do you want to save?\t"))
-        WeeklyDepositAmount =  int(input("\nHow much are you going to deposit each week.\t"))
-
-        #Making sure the amount is valid
-        if WeeklyDepositAmount > Income:
-            print("\nYou can not deposit that amount per week")
-        elif WeeklyDepositAmount <=0:
-            print("\nYou aren't depositing anything.")
         
-        print("\nIt will take", MoneySavedGoal/WeeklyDepositAmount, "weeks.")
+        weeklyormonthly = input("\nDo you want the payments to be 1:Weekly or 2: Monthly?\t")
+
+        if weeklyormonthly not in ["1", "2"]:
+            print("\nThat is not a valid input.")
+
+        elif weeklyormonthly == "1":
+            #Inputs for the needed variables
+            Income = int(input("\nWhat is your weekly income.\t"))
+            MoneySavedGoal = int(input("\nHow much money do you want to save?\t"))
+            WeeklyDepositAmount =  int(input("\nHow much are you going to deposit each week.\t"))
+
+            #Making sure the amount is valid
+            if WeeklyDepositAmount > Income:
+                print("\nYou can not deposit that amount per week")
+            elif WeeklyDepositAmount <=0:
+                print("\nYou aren't depositing anything.")
+            
+            else:
+                print("\nIt will take", MoneySavedGoal/WeeklyDepositAmount, "weeks.")
+
+        elif weeklyormonthly == "2":
+            #Inputs for the needed variables
+            Income = int(input("\nWhat is your monthly income.\t"))
+            MoneySavedGoal = int(input("\nHow much money do you want to save?\t"))
+            MonthlyDepositAmount =  int(input("\nHow much are you going to deposit each month.\t")) 
+
+            #Making sure the amount is valid
+            if MonthlyDepositAmount > Income:
+                print("\nYou can not deposit that amount per week")
+            elif MonthlyDepositAmount <=0:
+                print("\nYou aren't depositing anything.")       
+
+            else:
+                print("\nIt will take", MoneySavedGoal/MonthlyDepositAmount, "Months.")    
 
     def InterestCalc():
         #Inputs for the needed variables
@@ -39,26 +61,50 @@ while True:
 
         #exception handling
         if InterestAmountPerYear <= 0:
-            print("You can't have negative interest.")
+            print("\nYou can't have negative interest.")
         
         if AmountOMoney < 0:
-            print("This calculator does not want a negative in the starting amount.")
+            print("\nThis calculator does not want a negative in the starting amount.")
 
         #Calculating Math
         for x in range(AmountInYears):
             AmountOMoney = ((AmountOMoney + AmountAddedEachYear)*(1 + InterestAmountPerYear))
         
-        print(f"After {AmountInYears} years there would be {AmountOMoney} in the acount.")
+        print(f"\nAfter {AmountInYears} years there would be {AmountOMoney} in the acount.")
             
     def BudgetAllocator():
-        print("dsafgdsahfgsafdsafdrkugdsafdgeraesdlufrva")
+        #Needed Inputs
+        Budget = int(input("\nWhat is your budget?\t"))
+        Percentageforfood = float(input("\nWhat percentage of your budget do you want to go to food?\t"))
+        Percentageforfun = float(input("\nWhat percentage of your budget do you want to go to entertainment/activities?\t"))
+        Percentageforbills = float(input("\nWhat percentage of your budget do you want to go to expenses?(The rest will go to savings)\t"))
+
+        if Percentageforfood + Percentageforfun + Percentageforbills > 100:
+            print("\nThe percentages are over 100%")
+
+        if Percentageforfood + Percentageforfun + Percentageforbills < 0:
+            print("\nThe percentages are less than 0%")
+
+
 
     def SalePriceCalc():
         print("dsafsa")
 
     def TipCalc():
         #Needed variables
-        CostOFood = int(input(""))
+        CostOFood = float(input("\nWhat was the cost of the food after taxes?\t"))
+        PercentageTip = float(input("\nWhat percentage do you want your tip to be?\t"))
+
+        #exception handling
+        if CostOFood <= 0:
+            print("\nThis is an invalid amount for the cost of the food.")
+
+        if PercentageTip <= 0:
+            print("\nThis is an invalid amount for the percentage.")
+
+        #Math
+        TipAmount = round((CostOFood * (PercentageTip / 100)), 2)
+        print(f"\nA tip {PercentageTip}% of ${CostOFood} is ${TipAmount}.")
 
     def main():
 
