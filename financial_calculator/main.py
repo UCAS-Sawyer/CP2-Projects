@@ -12,6 +12,13 @@
 #---
 while True:
 
+    #Exception handling for ints
+    def intchecker(inputx):
+        try:
+            inputx = int(inputx)
+            return inputx
+        except:
+            print("\nThat is an invalid input.")
 
     def saveingcalculator():
         
@@ -52,43 +59,50 @@ while True:
 
     def InterestCalc():
         #Inputs for the needed variables
-        AmountOMoney = int(input("\nWhat is the initial amount of money in the acount?\t"))
-        InterestAmountPerYear = int(input("\nWhat is the interest you get per year(Percentage)?\t"))
-        AmountAddedEachYear = int(input("\nHow much are you going to add per year?\t"))
-        AmountInYears = int(input("\nHow many years do you want to calculate\t"))
+        AmountOMoney = input("\nWhat is the initial amount of money in the acount?\t")
 
-        InterestAmountPerYear = InterestAmountPerYear/100
+        #Exception handling
+        if intchecker(AmountOMoney) == int:
+            InterestAmountPerYear = int(input("\nWhat is the interest you get per year(Percentage)?\t"))
+            if intchecker(InterestAmountPerYear) == int:
+                AmountAddedEachYear = int(input("\nHow much are you going to add per year?\t"))
+                if intchecker(AmountAddedEachYear) == int:
+                    AmountInYears = int(input("\nHow many years do you want to calculate?\t"))
+                    if intchecker(AmountInYears) == int:
 
-        #exception handling
-        if InterestAmountPerYear <= 0:
-            print("\nYou can't have negative interest.")
-        
-        if AmountOMoney < 0:
-            print("\nThis calculator does not want a negative in the starting amount.")
+                        InterestAmountPerYear = InterestAmountPerYear/100
 
-        #Calculating Math
-        for x in range(AmountInYears):
-            AmountOMoney = ((AmountOMoney + AmountAddedEachYear)*(1 + InterestAmountPerYear))
-        
-        print(f"\nAfter {AmountInYears} years there would be {AmountOMoney} in the acount.")
+                        #exception handling
+                        if InterestAmountPerYear <= 0:
+                            print("\nYou can't have negative interest.")
+                        
+                        if AmountOMoney < 0:
+                            print("\nThis calculator does not want a negative in the starting amount.")
+
+                        #Calculating Math
+                        for x in range(AmountInYears):
+                            AmountOMoney = ((AmountOMoney + AmountAddedEachYear)*(1 + InterestAmountPerYear))
+                        
+                        AmountOMoney = round(AmountOMoney, 2)
+                        
+                        print(f"\nAfter {AmountInYears} years there would be ${AmountOMoney} in the acount.")
             
     def BudgetAllocator():
         #Needed Inputs
-        Budget = int(input("\nWhat is your budget?\t"))
-        Percentageforfood = float(input("\nWhat percentage of your budget do you want to go to food?\t"))
-        Percentageforfun = float(input("\nWhat percentage of your budget do you want to go to entertainment/activities?\t"))
-        Percentageforbills = float(input("\nWhat percentage of your budget do you want to go to expenses?(The rest will go to savings)\t"))
+        MonthlyIncome = int(input("\nWhat is your monthly income?\t"))
+        FoodPercentage = MonthlyIncome * 0.15
+        HousingPercentage = MonthlyIncome * 0.3
+        UtilitiesPercentage = MonthlyIncome * 0.15
+        TransportationPercentage = MonthlyIncome * 0.15
+        EntertainmentPercentage = MonthlyIncome * 0.05
+        SavingsPercentage = MonthlyIncome - FoodPercentage - HousingPercentage -  UtilitiesPercentage - TransportationPercentage -  EntertainmentPercentage
 
-        if Percentageforfood + Percentageforfun + Percentageforbills > 100:
-            print("\nThe percentages are over 100%")
-
-        if Percentageforfood + Percentageforfun + Percentageforbills < 0:
-            print("\nThe percentages are less than 0%")
-
+        print(f"\nFrom your monthly income of ${MonthlyIncome} you need to allowcate 15% or ${FoodPercentage} to food, 30% or ${HousingPercentage} for housing, 15% or ${UtilitiesPercentage} for utilities, 15% or ${TransportationPercentage} for transportation, 5% or ${EntertainmentPercentage} for entertainment/activites and that leaves ${SavingsPercentage} left for savings.")
 
 
     def SalePriceCalc():
         print("dsafsa")
+
 
     def TipCalc():
         #Needed variables
@@ -108,7 +122,7 @@ while True:
 
     def main():
 
-        Decision = input("\nWhat do you want to do?(1:Calculate savings, 2:Coumpound Interest Calculator, 3:Budget Allocator, 4:Sale Prive Calculator, 5:Tip Calculator, p:Exit)\t")
+        Decision = input("\nWhat do you want to do?(1:Calculate savings, 2:Coumpound Interest Calculator, 3:Budget Allocator, 4:Sale Price Calculator, 5:Tip Calculator, p:Exit)\t")
 
         #Checking all options for Decision
         if Decision == "1":
