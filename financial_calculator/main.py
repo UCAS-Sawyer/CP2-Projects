@@ -110,7 +110,28 @@ def BudgetAllocator():
 
 
 def SalePriceCalc():
-    print("dsafsa")
+    #Inputs for the needed variables & invalid input handling
+    OriginalPrice = floatchecker(input("\nWhat is the initial price of the item?\t"))
+    if type(OriginalPrice) == float:
+
+        #Percent off or constant off
+        ConstantorPercent = input("\nIs the discount a 1: flat number or 2: percent?\t")
+
+        if ConstantorPercent in ["1"]:
+            Discountconstant = floatchecker(input("\nHow much is the item off in dollars?\t"))
+
+            if type(OriginalPrice) == float:
+                print(f"The item will be ${OriginalPrice - Discountconstant}.")
+
+        elif ConstantorPercent in ["2"]:
+            Discountpercent = floatchecker(input("\nWhat percent is it off?\t"))
+
+            if type(OriginalPrice) == float:
+                newamount = round(OriginalPrice * (1 - (Discountpercent/100)), 2)
+                print(f"The item will be ${newamount}.")
+
+        else:
+            print("\nThat is not a valid input.")
 
 
 def TipCalc():
@@ -154,7 +175,10 @@ def main():
     elif Decision == "p":
         #Stopping the program
         raise SystemExit
-    
+
+#Clearing Screen
+print("\033[H\033[J")
+
 while True:
 
     main()
