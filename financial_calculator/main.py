@@ -10,19 +10,21 @@
 #Tip Calculator
 
 #---
-#Exception handling for floats
 
+#Exception handling for floats
 def floatchecker(inputx):
     try:
+        #Turning it into the float and returning it
         inputx = float(inputx)
         return inputx
     except:
+        #If it can't be turned into a float then it will return them back to the UI 
         print("\nThat is an invalid input.")
 
 def saveingcalculator():
-    
+    #Asking if the person is going to pay weekly or monthly
     weeklyormonthly = input("\nDo you want the payments to be 1:Weekly or 2: Monthly?\t")
-
+    #Checking if it is one of the options
     if weeklyormonthly not in ["1", "2"]:
         print("\nThat is not a valid input.")
 
@@ -42,6 +44,7 @@ def saveingcalculator():
                         print("\nYou aren't depositing anything.")
                     
                     else:
+                        #Doing the math for the amount of weeks and printing the output
                         print("\nIt will take", MoneySavedGoal/WeeklyDepositAmount, "weeks.")
 
     elif weeklyormonthly == "2":
@@ -60,13 +63,12 @@ def saveingcalculator():
                         print("\nYou aren't depositing anything.")       
 
                     else:
+                        #Doing the math for the amount of months and printing the output
                         print("\nIt will take", MoneySavedGoal/MonthlyDepositAmount, "Months.")    
 
 def InterestCalc():
-    #Inputs for the needed variables
+    #Required inputs and exception handling
     AmountOMoney = floatchecker(input("\nWhat is the initial amount of money in the acount?\t"))
-
-    #Exception handling
     if type(AmountOMoney) == float:
         InterestAmountPerYear = floatchecker(input("\nWhat is the interest you get per year(Percentage)?\t"))
         if type(InterestAmountPerYear) == float:
@@ -77,15 +79,15 @@ def InterestCalc():
 
                     InterestAmountPerYear = InterestAmountPerYear/100
 
-                    #exception handling
+                    #exception handling for the correct values
                     if InterestAmountPerYear <= 0:
                         print("\nYou can't have negative interest.")
                     
                     if AmountOMoney < 0:
                         print("\nThis calculator does not want a negative in the starting amount.")
 
-                    #Calculating Math
                     AmountInYears = int(AmountInYears)
+                    #Calculating the money based on the inputs for the amount of years inputed
                     for x in range(AmountInYears):
                         AmountOMoney = ((AmountOMoney + AmountAddedEachYear)*(1 + InterestAmountPerYear))
                     
@@ -98,7 +100,7 @@ def BudgetAllocator():
     MonthlyIncome = floatchecker(input("\nWhat is your monthly income?\t"))
 
     if type(MonthlyIncome) == float:
-
+        #Calculating all of the costs based on set percentages
         FoodPercentage = MonthlyIncome * 0.15
         HousingPercentage = MonthlyIncome * 0.3
         UtilitiesPercentage = MonthlyIncome * 0.15
@@ -114,44 +116,52 @@ def SalePriceCalc():
     OriginalPrice = floatchecker(input("\nWhat is the initial price of the item?\t"))
     if type(OriginalPrice) == float:
 
-        #Percent off or constant off
+        #PAsking for the input and checking for it to be valid
         ConstantorPercent = input("\nIs the discount a 1: flat number or 2: percent?\t")
+        if type(ConstantorPercent) == float:
+            #Checking weather ConstantorPercent is 1 or 2
+            if ConstantorPercent in ["1"]:
+                #Input and invalid checking
+                Discountconstant = floatchecker(input("\nHow much is the item off in dollars?\t"))
+                if type(Discountconstant) == float:
 
-        if ConstantorPercent in ["1"]:
-            Discountconstant = floatchecker(input("\nHow much is the item off in dollars?\t"))
+                    #Calculating the price minus the discount and printing it
+                    print(f"The item will be ${OriginalPrice - Discountconstant}.")
 
-            if type(OriginalPrice) == float:
-                print(f"The item will be ${OriginalPrice - Discountconstant}.")
+            elif ConstantorPercent in ["2"]:
+                #Input and invalid checking
+                Discountpercent = floatchecker(input("\nWhat percent is it off?\t"))
+                if type(Discountpercent) == float:
 
-        elif ConstantorPercent in ["2"]:
-            Discountpercent = floatchecker(input("\nWhat percent is it off?\t"))
+                    #Calculating the cost based on the discount percent
+                    newamount = round(OriginalPrice * (1 - (Discountpercent/100)), 2)
+                    #Printing the output
+                    print(f"The item will be ${newamount}.")
 
-            if type(OriginalPrice) == float:
-                newamount = round(OriginalPrice * (1 - (Discountpercent/100)), 2)
-                print(f"The item will be ${newamount}.")
-
-        else:
-            print("\nThat is not a valid input.")
+            else:
+                print("\nThat is not a valid input.")
 
 
 def TipCalc():
-    #Needed variables
+    #Needed variables and valid checking
     CostOFood = floatchecker(input("\nWhat was the cost of the food after taxes?\t"))
     if type(CostOFood) == float:
         PercentageTip = floatchecker(input("\nWhat percentage do you want your tip to be?\t"))
         if type(PercentageTip) == float:
 
-            #exception handling
+            #exception handling for value of the int
             if CostOFood <= 0:
                 print("\nThis is an invalid amount for the cost of the food.")
 
             if PercentageTip <= 0:
                 print("\nThis is an invalid amount for the percentage.")
 
-            #Math
+            #Calculating the cost of the tip based on the percentage of the cost of the food.
             TipAmount = round((CostOFood * (PercentageTip / 100)), 2)
+            #Printing the output
             print(f"\nA tip {PercentageTip}% of ${CostOFood} is ${TipAmount}.")
 
+#This function is the Ui
 def main():
 
     Decision = input("\nWhat do you want to do?(1:Calculate savings, 2:Coumpound Interest Calculator, 3:Budget Allocator, 4:Sale Price Calculator, 5:Tip Calculator, p:Exit)\t")
@@ -180,5 +190,5 @@ def main():
 print("\033[H\033[J")
 
 while True:
-
+    #Calling the UI
     main()
