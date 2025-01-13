@@ -121,12 +121,14 @@ def SalePriceCalc():
             Discountconstant = floatchecker(input("\nHow much is the item off in dollars?\t"))
 
             if type(OriginalPrice) == float:
+                #Doing the math
                 print(f"The item will be ${OriginalPrice - Discountconstant}.")
 
         elif ConstantorPercent in ["2"]:
             Discountpercent = floatchecker(input("\nWhat percent is it off?\t"))
 
             if type(OriginalPrice) == float:
+                #Doing the math
                 newamount = round(OriginalPrice * (1 - (Discountpercent/100)), 2)
                 print(f"The item will be ${newamount}.")
 
