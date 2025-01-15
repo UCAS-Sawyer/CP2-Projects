@@ -1,6 +1,6 @@
 #Sawyer Wood, Personal Library Program
 
-Library = set()
+Library = []
 
 def intchecker(Inputx):
     try:
