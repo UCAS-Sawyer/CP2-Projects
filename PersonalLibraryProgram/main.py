@@ -8,6 +8,7 @@ def intchecker(Inputx):
         return(Inputx)
     except:
         print("\nThat is not a valid input.")
+        return None
 
 def AddItem(Library):
     #Necassary inputs  and invalid checking
@@ -25,7 +26,7 @@ def AddItem(Library):
         print(f"\nThe item has been added.")
 
         #Adding the item to the list
-        Library.add(Item)
+        Library.append(Item)
 
 def RemoveItem(Library):
     #Necassary inputs  and invalid checking
@@ -37,6 +38,9 @@ def RemoveItem(Library):
             Library.remove(item)
         else:
             print("\nThat is not one of the titles of any of the books in the library.\t")
+
+def SearchForItem():
+    print("Not ready yet.")
 
 
 def main():
