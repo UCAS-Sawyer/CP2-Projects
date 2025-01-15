@@ -31,7 +31,7 @@ def AddItem(Library):
         Library.append(Item)
 
 def RemoveItem(Library):
-    #Necassary inputs  and invalid checking
+    #Necassary inputs and checking if it is in the library
     NameOfBook = input("\nWhat is the name of the book you would like to remove?\t")
     for item in Library:
         #Checking if the title of the book is in the library and removing it"
@@ -41,9 +41,27 @@ def RemoveItem(Library):
         else:
             print("\nThat is not one of the titles of any of the books in the library.\t")
 
-def SearchForItem():
-    print("\nNot ready yet.")
+def SearchForItem(Library):
+    #Necassary inputs and valid checking
+    AuthorOrTitle = input("\nDo you want to seach by 1: Author Name or 2: Book Title ?\t")
+    
+    if AuthorOrTitle == "1":
+        #Necassary input
+        AuthorName = input("\nWhat is the author's name?\t")
+        for item in Library:
+            #Checking if any of the books are by the author
+            if AuthorName == item["Author"]:
+                print(item)
 
+    elif AuthorOrTitle == "2":
+        #Necassary input
+        BookTitle = input("\nWhat is the title of the book?\t")
+        for item in Library:
+            #Checking if any of the books have the title
+            if BookTitle == item["Title"]:
+                print(item)
+    else:
+        print("\nThat is not one of the options.")
 
 def main():
     Disicion = input("\nDo you want to 1: Add an item, 2: Remove an item, 3: Search for an item, 4: Display the library, 5: Exit ? \t")
@@ -53,7 +71,7 @@ def main():
     elif Disicion == "2":
         RemoveItem(Library)
     elif Disicion == "3":
-        SearchForItem()
+        SearchForItem(Library)
     elif Disicion == "4":
         print("\n", Library)
     elif Disicion == "5":
