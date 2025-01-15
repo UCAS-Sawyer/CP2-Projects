@@ -1,6 +1,6 @@
 #Sawyer Wood, Personal Library Program
 
-Library = {""}
+Library = set()
 
 def intchecker(Inputx):
     try:
@@ -31,7 +31,7 @@ def RemoveItem(Library):
     #Necassary inputs  and invalid checking
     NameOfBook = input("\nWhat is the name of the book you would like to remove?\t")
     for item in Library:
-        #Checking if the title of the book is in the library and removing it
+        #Checking if the title of the book is in the library and removing it"
         if NameOfBook == item["Title"]:
             print(item["Title"], " has been removed.")
             Library.remove(item)
