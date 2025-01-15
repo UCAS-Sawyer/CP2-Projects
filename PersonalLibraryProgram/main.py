@@ -1,5 +1,6 @@
 #Sawyer Wood, Personal Library Program
 
+#Find a way to say that an author doesn't have a book in there if you seach and it doesn't find anything
 #Needs a set or a tuple somewhere.
 
 Library = []
@@ -51,7 +52,7 @@ def SearchForItem(Library):
         for item in Library:
             #Checking if any of the books are by the author
             if AuthorName == item["Author"]:
-                print(item)
+                print("\n", item)
 
     elif AuthorOrTitle == "2":
         #Necassary input
@@ -59,7 +60,7 @@ def SearchForItem(Library):
         for item in Library:
             #Checking if any of the books have the title
             if BookTitle == item["Title"]:
-                print(item)
+                print(item)  
     else:
         print("\nThat is not one of the options.")
 
