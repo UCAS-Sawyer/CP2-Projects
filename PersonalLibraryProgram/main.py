@@ -1,5 +1,7 @@
 #Sawyer Wood, Personal Library Program
 
+#Needs a set or a tuple somewhere.
+
 Library = []
 
 def intchecker(Inputx):
