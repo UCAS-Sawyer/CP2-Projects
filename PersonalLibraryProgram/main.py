@@ -15,7 +15,7 @@ def AddItem(Library):
     NameOfBook = input("\nWhat is the name of the book?\t")
     NameOfAuthor = input("\nWhat is the name of the author?\t")
     NumberOfPages = intchecker(input("\nHow many pages does it have?\t"))
-    if NumberOfPages == int:
+    if NumberOfPages != None:
 
         Item = {
             "Title" : NameOfBook, 
@@ -34,13 +34,13 @@ def RemoveItem(Library):
     for item in Library:
         #Checking if the title of the book is in the library and removing it"
         if NameOfBook == item["Title"]:
-            print(item["Title"], " has been removed.")
+            print("\n", item["Title"], "has been removed.")
             Library.remove(item)
         else:
             print("\nThat is not one of the titles of any of the books in the library.\t")
 
 def SearchForItem():
-    print("Not ready yet.")
+    print("\nNot ready yet.")
 
 
 def main():
@@ -53,7 +53,7 @@ def main():
     elif Disicion == "3":
         SearchForItem()
     elif Disicion == "4":
-        print(Library)
+        print("\n", Library)
     elif Disicion == "5":
         raise SystemExit
     else:
