@@ -16,7 +16,11 @@ def AddItem(Library):
     NumberOfPages = intchecker(input("\nHow many pages does it have?\t"))
     if NumberOfPages == int:
 
-        Item = (NameOfBook, NameOfAuthor, NumberOfPages)
+        Item = {
+            "Title" : NameOfBook, 
+            "Author" : NameOfAuthor, 
+            "Pages" : NumberOfPages
+            }
 
         print(f"\nThe item has been added.")
 
@@ -26,11 +30,11 @@ def AddItem(Library):
 def RemoveItem(Library):
     #Necassary inputs  and invalid checking
     NameOfBook = input("\nWhat is the name of the book you would like to remove?\t")
-    for x in Library:
-        #This IS NOT WORKING HELP PLEAS FIX
-        if NameOfBook == x[0]:
-            print(f"\n{x[0]} has been removed.")
-            Library.remove(x)
+    for item in Library:
+        #Checking if the title of the book is in the library and removing it
+        if NameOfBook == item["Title"]:
+            print(item["Title"], " has been removed.")
+            Library.remove(item)
         else:
             print("\nThat is not one of the titles of any of the books in the library.\t")
 
