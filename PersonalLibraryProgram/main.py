@@ -68,7 +68,7 @@ def SearchForItem(Library):
         print("\nThat is not one of the options.")
 
 def main():
-    Disicion = input("\nDo you want to 1: Add an item, 2: Remove an item, 3: Search for an item, 4: Exit ? \t")
+    Disicion = input("\nDo you want to 1: Add an item, 2: Remove an item, 3: Search for an item, 4: Display Library, 5: Exit ? \t")
 
     if Disicion == "1":
         AddItem(Library)
@@ -77,6 +77,8 @@ def main():
     elif Disicion == "3":
         SearchForItem(Library)
     elif Disicion == "4":
+        print("\n", Library)
+    elif Disicion == "5":
         raise SystemExit
     else:
         print("\nThat is not one of the options.")
