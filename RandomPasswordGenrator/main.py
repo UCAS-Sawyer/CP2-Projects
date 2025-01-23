@@ -1,5 +1,16 @@
 #Sawyer Wood, random password generator
 
+#Importing random library and string library
+import random
+import string
+
+#Required lists for creating the password
+LowercaseLetters = [string.ascii_lowercase]
+UppercaseLetters = [string.ascii_uppercase]
+Numbers = [string.digits]
+Symbols = [string.punctuation]
+
+#Exception handling for ints
 def intchecker(Inputx):
     try:
         Inputx = int(Inputx)
@@ -8,6 +19,7 @@ def intchecker(Inputx):
         print("\nThat is not a valid input.")
         return None
 
+#Exception handling for yes or no
 def yesnointchecker(Inputx):
     if Inputx in ["1", "2"]:
         return(Inputx)
@@ -16,10 +28,11 @@ def yesnointchecker(Inputx):
         return None
 
 def generatepassword():
+    Listtopickfrom = []
     #Asking for the paramiters for the password and checking that they are the correct inputs
     LenOPassword = intchecker(input("\nHow long do you want the password to be?\t"))
     if type(LenOPassword) == int:
-        IncludeLowercase = yesnointchecker(input("\nDo you want lowercase letters in your password 1: Yes. 2: No\t"))
+        IncludeLowercase = yesnointchecker(input("\nDo you want to include lowercase letters? 1: Yes. 2: No\t"))
         if IncludeLowercase != None:
             IncludeUppercase = yesnointchecker(input("\nDo you want to include uppercase letters? 1: Yes. 2: No\t"))
             if IncludeUppercase != None:
@@ -27,7 +40,19 @@ def generatepassword():
                 if IncludeNumbers != None:
                     IncludeSymbols = yesnointchecker(input("\nDo you want to include special characters? 1: Yes. 2: No\t"))
                     if IncludeSymbols != None:
-                        print("It all worked.")
+                        if IncludeLowercase == "1":
+                            Listtopickfrom.append(LowercaseLetters)
+                        if IncludeUppercase == "1":
+                            Listtopickfrom.append(UppercaseLetters)
+                        if IncludeNumbers == "1":
+                            Listtopickfrom.append(Numbers)
+                        if IncludeSymbols == "1":
+                            Listtopickfrom.append(Symbols)
+                        for x in range(LenOPassword):
+                            print("yay")
+
+                            
+
 
 def main():
     #Choice between generate password and quit
