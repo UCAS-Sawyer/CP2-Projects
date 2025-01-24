@@ -48,8 +48,8 @@ def generatepassword():
                             Listtopickfrom.append(Numbers)
                         if IncludeSymbols == "1":
                             Listtopickfrom.append(Symbols)
-                            #Making the 3 passwords
-                        for y in range(3):
+                            #Making the 4 passwords
+                        for y in range(4):
                             Password = ""
                             for x in range(LenOPassword):
                                 randomlist = random.choice(Listtopickfrom)
