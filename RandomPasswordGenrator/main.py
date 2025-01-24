@@ -26,7 +26,7 @@ def yesnointchecker(Inputx):
         print("\nThat is not a valid input.")
         return None
 
-def generatepassword():
+def generatepasswordparameters():
     Listtopickfrom = []
     #Asking for the paramiters for the password and checking that they are the correct inputs
     LenOPassword = intchecker(input("\nHow long do you want the password to be? \t"))
@@ -48,15 +48,16 @@ def generatepassword():
                             Listtopickfrom.append(Numbers)
                         if IncludeSymbols == "1":
                             Listtopickfrom.append(Symbols)
-                            #Making the 4 passwords
-                        for y in range(4):
-                            Password = ""
-                            for x in range(LenOPassword):
-                                randomlist = random.choice(Listtopickfrom)
-                                Password = Password + random.choice(randomlist)
-                            print("\n", Password)
+                        generatepassword(LenOPassword, Listtopickfrom)
 
-                            
+def generatepassword(LenOPassword, Listtopickfrom):
+    #Making the 4 passwords
+    for y in range(4):
+        Password = ""
+        for x in range(LenOPassword):
+            randomlist = random.choice(Listtopickfrom)
+            Password = Password + random.choice(randomlist)
+        print("\n", Password)
 
 
 def main():
@@ -64,7 +65,7 @@ def main():
     choice = input("\nWhat do you want to do? 1: Generate Password, 2: Quit\t")
 
     if choice == "1":
-        generatepassword()
+        generatepasswordparameters()
     elif choice == "2":
         raise SystemExit
     else:
