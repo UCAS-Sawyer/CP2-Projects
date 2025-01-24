@@ -5,10 +5,10 @@ import random
 import string
 
 #Required lists for creating the password
-LowercaseLetters = [string.ascii_lowercase]
-UppercaseLetters = [string.ascii_uppercase]
-Numbers = [string.digits]
-Symbols = [string.punctuation]
+LowercaseLetters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+UppercaseLetters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+Numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+Symbols = ['!', '"', '#', '$', '%', '&', "'", '(', ')', '*', '+', ',', '-', '.', '/', ':', ';', '<', '=', '>', '?', '@', '[', '\\', ']', '^', '_', '`', '{', '|', '}', '~']
 
 #Exception handling for ints
 def intchecker(Inputx):
@@ -30,7 +30,7 @@ def yesnointchecker(Inputx):
 def generatepassword():
     Listtopickfrom = []
     #Asking for the paramiters for the password and checking that they are the correct inputs
-    LenOPassword = intchecker(input("\nHow long do you want the password to be?\t"))
+    LenOPassword = intchecker(input("\nHow long do you want the password to be? \t"))
     if type(LenOPassword) == int:
         IncludeLowercase = yesnointchecker(input("\nDo you want to include lowercase letters? 1: Yes. 2: No\t"))
         if IncludeLowercase != None:
@@ -40,6 +40,7 @@ def generatepassword():
                 if IncludeNumbers != None:
                     IncludeSymbols = yesnointchecker(input("\nDo you want to include special characters? 1: Yes. 2: No\t"))
                     if IncludeSymbols != None:
+                        #Setting what the passwords can contain
                         if IncludeLowercase == "1":
                             Listtopickfrom.append(LowercaseLetters)
                         if IncludeUppercase == "1":
@@ -48,10 +49,13 @@ def generatepassword():
                             Listtopickfrom.append(Numbers)
                         if IncludeSymbols == "1":
                             Listtopickfrom.append(Symbols)
-                            #WORKING RIGHT HERE
-                        for x in range(LenOPassword):
-                            randomlist = random.choice(Listtopickfrom)
-                            print(random.choice(randomlist))
+                            #Making the 3 passwords
+                        for y in range(3):
+                            Password = ""
+                            for x in range(LenOPassword):
+                                randomlist = random.choice(Listtopickfrom)
+                                Password = Password + random.choice(randomlist)
+                            print("\n", Password)
 
                             
 
