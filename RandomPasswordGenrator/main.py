@@ -48,7 +48,10 @@ def generatepasswordparameters():
                             Listtopickfrom.append(Numbers)
                         if IncludeSymbols == "1":
                             Listtopickfrom.append(Symbols)
-                        generatepassword(LenOPassword, Listtopickfrom)
+                        if [IncludeLowercase, IncludeUppercase, IncludeNumbers, IncludeSymbols] == ["2", "2", "2", "2"]:
+                            print("\nYou said no to all of the options, try again.")
+                        else:
+                            generatepassword(LenOPassword, Listtopickfrom)
 
 def generatepassword(LenOPassword, Listtopickfrom):
     #Making the 4 passwords
