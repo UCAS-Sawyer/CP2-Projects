@@ -16,7 +16,7 @@ CodeToEnglish = {
     '...-': 'V', '.--': 'W', '-..-': 'X', '-.--': 'Y', '--..': 'Z', '-----': '0', '.----': '1',
     '..---': '2', '...--': '3', '....-': '4', '.....': '5', '-....': '6', '--...': '7',
     '---..': '8', '----.': '9', '--..--': ',', '.-.-.-': '.', '..--..': '?', '-..-.': '/',
-    '-....-': '-', '-.--.': '(', '-.--.-': ')', '/': ' ', ' ' : ''
+    '-....-': '-', '-.--.': '(', '-.--.-': ')', '/': ' ', ' ': ''
 }
 
 def encryptmessage():
@@ -37,9 +37,22 @@ def decryptmessage():
     #message to be translated
     Message = input("\nWhat is the message you would like to translate? !MorseCode Only! \t")
 
-    for x in Message:
-        TranslatedMessage += CodeToEnglish[x]
-    
+    #Breaking the words where the "/" is
+    Words = Message.split("/")
+    #For each word in words
+    for Word in Words:
+        #Spliting the word into letters
+        Letters = Word.split(" ")
+        #For each letter in Letters
+        for x in Letters:
+            #If the letter is in CodeToEnglish
+            if x in CodeToEnglish:
+                #Add the Translated verson
+                TranslatedMessage += CodeToEnglish[x]
+        #Add a space inbetween words
+        TranslatedMessage += " "
+
+    #Print the translated message
     print(TranslatedMessage)
 
 def main():
