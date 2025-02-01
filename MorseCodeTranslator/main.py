@@ -6,7 +6,7 @@ EnglishToCode = {
     'V': '...-', 'W': '.--', 'X': '-..-', 'Y': '-.--', 'Z': '--..', '1': '.----', '2': '..---',
     '3': '...--', '4': '....-', '5': '.....', '6': '-....', '7': '--...', '8': '---..', '9': '----.',
     '0': '-----', ', ': '--..--', '.': '.-.-.-', '?': '..--..', '/': '-..-.', '-': '-....-', 
-    '(': '-.--.', ')': '-.--.-', ' ': '/'
+    '(': '-.--.', ')': '-.--.-', ' ': '/', '!' : '-.-.--'
 }
 
 CodeToEnglish = {
@@ -16,7 +16,7 @@ CodeToEnglish = {
     '...-': 'V', '.--': 'W', '-..-': 'X', '-.--': 'Y', '--..': 'Z', '-----': '0', '.----': '1',
     '..---': '2', '...--': '3', '....-': '4', '.....': '5', '-....': '6', '--...': '7',
     '---..': '8', '----.': '9', '--..--': ',', '.-.-.-': '.', '..--..': '?', '-..-.': '/',
-    '-....-': '-', '-.--.': '(', '-.--.-': ')', '/': ' ', ' ': ''
+    '-....-': '-', '-.--.': '(', '-.--.-': ')', '/': ' ', '-.-.--' : '!', ' ': ''
 }
 
 def encryptmessage():
@@ -30,7 +30,7 @@ def encryptmessage():
         TranslatedMessage += " "
 
     #Print translated message
-    print(TranslatedMessage)
+    print("\n", TranslatedMessage)
 
 def decryptmessage():
     TranslatedMessage = ""
@@ -53,16 +53,22 @@ def decryptmessage():
         TranslatedMessage += " "
 
     #Print the translated message
-    print(TranslatedMessage)
+    print("\n", TranslatedMessage)
 
 def main():
-    Choice = input("\nDo you want to translate into, 1. Morse Code, 2. English \t")
+    Choice = input("\nDo you want to translate into, 1. Morse Code, 2. English, 3. Exit  \t")
 
     if Choice == "1":
         encryptmessage()
     elif Choice == "2":
         decryptmessage()
+    elif Choice == "3":
+        raise SystemExit
     else:
         print("\nThat is an invalid inpout.")
 
-main()
+#Clearing Screen
+print("\033[H\033[J")
+
+while True:
+    main()
