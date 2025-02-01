@@ -1,72 +1,37 @@
-artists = []
+#Sawyer Wood, ProficiencyTest Secret Sypher.
+word = input("What is the word you want to Cipher/Decipher?: ")
+idk = input("Do you want to cipherify or decipherify?: ")
+alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", " ", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "1"]
+shiftedalphabet = ["c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "a", "b", ":", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "1"]
 
-def add_artist():
-    name = input("Enter the name of the artist: ")
-    genre = input("Enter the genre of the artist: ")
-    duration = input("Enter the duration of the performance: ")
-    artist_info = {"name": name, "genre": genre, "duration": duration}
-    artists.append(artist_info)
-    print(f"Artist {name} has been added to the list.")
-    main()
+def Cipherify(word):
+    wordspot = 0
+    alphabetspot = 0
+    stopoint = len(word)
+    while wordspot < stopoint:
+        if word[wordspot] == alphabet[alphabetspot]:
+            letter = shiftedalphabet[alphabetspot]
+            wordspot = wordspot + 1
+            alphabetspot = 0
+            print(letter)
+        else:
+            alphabetspot = alphabetspot + 1
 
-def edit_artist():
-    name = input("Enter the name of the artist to edit: ")
-    for artist in artists:
-        if artist["name"] == name:
-            print(f"Artist found: {artist}")
-            choice = input("What do you want to change? 1: Name, 2: Genre, 3: Duration: ")
-            if choice == "1":
-                new_name = input("Enter the new name: ")
-                artist["name"] = new_name
-                print(f"Name changed to {new_name}")
-            elif choice == "2":
-                new_genre = input("Enter the new genre: ")
-                artist["genre"] = new_genre
-                print(f"Genre changed to {new_genre}")
-            elif choice == "3":
-                new_duration = input("Enter the new duration: ")
-                artist["duration"] = new_duration
-                print(f"Duration changed to {new_duration}")
-            else:
-                print("Invalid choice")
-            main()
-            return
-    print(f"Artist {name} not found in the system.")
-    main()
+def Decipherify(word):
+    wordspot = 0
+    alphabetspot = 0
+    stopoint = len(word)
 
-def remove_artist():
-    name = input("Enter the name of the artist to remove: ")
-    for artist in artists:
-        if artist["name"] == name:
-            artists.remove(artist)
-            print(f"Artist {name} has been removed.")
-            main()
-            return
-    print(f"Artist {name} not found in the system.")
-    main()
+    while wordspot < stopoint:
+        if word[wordspot] == shiftedalphabet[alphabetspot]:
+            letter = alphabet[alphabetspot]
+            wordspot = wordspot + 1
+            alphabetspot = 0
+            print( letter)
+        else:
+            alphabetspot = alphabetspot + 1
 
-def view_artists():
-    print("Artists in the system:")
-    for artist in artists:
-        print(artist)
-    main()
-
-def main():
-    print("1: Add an Artist")
-    print("2: Edit an Artist")
-    print("3: Remove an Artist")
-    print("4: View all Artists")
-    choice = input("Enter your choice: ")
-    if choice == "1":
-        add_artist()
-    elif choice == "2":
-        edit_artist()
-    elif choice == "3":
-        remove_artist()
-    elif choice == "4":
-        view_artists()
-    else:
-        print("Invalid choice")
-        main()
-
-main()
+if idk == str("cipher"):
+    Cipherify(word)
+elif idk == str("decipher"):
+    Decipherify(word)
