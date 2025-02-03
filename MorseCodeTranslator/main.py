@@ -6,7 +6,7 @@ EnglishToCode = {
     'V': '...-', 'W': '.--', 'X': '-..-', 'Y': '-.--', 'Z': '--..', '1': '.----', '2': '..---',
     '3': '...--', '4': '....-', '5': '.....', '6': '-....', '7': '--...', '8': '---..', '9': '----.',
     '0': '-----', ', ': '--..--', '.': '.-.-.-', '?': '..--..', '/': '-..-.', '-': '-....-', 
-    '(': '-.--.', ')': '-.--.-', ' ': '/', '!' : '-.-.--'
+    '(': '-.--.', ')': '-.--.-', ' ': ' / ', '!' : '-.-.--'
 }
 
 CodeToEnglish = {
@@ -38,7 +38,7 @@ def decryptmessage():
     Message = input("\nWhat is the message you would like to translate? !MorseCode Only! \t")
 
     #Breaking the words where the "/" is
-    Words = Message.split("/")
+    Words = Message.split(" / ")
     #For each word in words
     for Word in Words:
         #Spliting the word into letters
