@@ -18,22 +18,27 @@ def AddItem(Library):
     NameOfAuthor = input("\nWhat is the name of the author?\t")
     NumberOfPages = intchecker(input("\nHow many pages does it have?\t"))
     if NumberOfPages != None:
+        YearPublished = intchecker(input("\nWhat year was the book published?\t"))
+        if YearPublished != None:
+            Item = {
+                "Name" : NameOfBook, 
+                "Author" : NameOfAuthor, 
+                "#Pages" : NumberOfPages,
+                "Year" : YearPublished
+                }
 
-        #This is a tuple
-        Item = (NameOfBook, NameOfAuthor, NumberOfPages)
+            print(f"\nThe book has been added.")
 
-        print(f"\nThe book has been added.")
-
-        #Adding the item to the list
-        Library.append(Item)
+            #Adding the item to the list
+            Library.append(Item)
 
 def RemoveItem(Library):
     #Necassary inputs and checking if it is in the library
     NameOfBook = input("\nWhat is the name of the book you would like to remove?\t")
     for item in Library:
         #Checking if the title of the book is in the library and removing it"
-        if NameOfBook == item[0]:
-            print("\n", item[0], "has been removed.")
+        if NameOfBook == item["Name"]:
+            print("\n", item["Name"], "has been removed.")
             Library.remove(item)
         else:
             print("\nThat is not one of the titles of any of the books in the library.\t")
@@ -48,8 +53,8 @@ def SearchForItem(Library):
         AuthorName = input("\nWhat is the author's name?\t")
         for item in Library:
             #Checking if any of the books are by the author
-            if AuthorName == item[1]:
-                print(f"\nTitle: {item[0]}, Author's Name: {item[1]}, Number of Pages: {item[2]}")
+            if AuthorName == item["Author"]:
+                print(f"\nTitle: {item["Name"]}, Author's Name: {item["Author"]}, Number of Pages: {item["#Pages"]}, Year Published: {item["Year"]}")
                 found = True
         if found == False:
             print("\nThere are no books by that author in here.")
@@ -59,13 +64,32 @@ def SearchForItem(Library):
         BookTitle = input("\nWhat is the title of the book?\t")
         for item in Library:
             #Checking if any of the books have the title
-            if BookTitle == item[0]:
-                print(f"\nTitle: {item[0]}, Author's Name: {item[1]}, Number of Pages: {item[2]}")
+            if BookTitle == item["Name"]:
+                print(f"\nTitle: {item["Name"]}, Author's Name: {item["Author"]}, Number of Pages: {item["#Pages"]}, Year Published: {item["Year"]}")
                 found = True
         if found == False:
             print("\nThere are no books with that title in here.")
     else:
         print("\nThat is not one of the options.")
+
+def PrintingLbrary(Library):
+    printingStuff = ""
+    printingAuthors = set()
+    disicion = input("\nDo you want to 1: Display Everything, 2: Display Only Book Names, 3: Display Only Authors? \t")
+
+    if disicion == "1":
+        print("\n", Library)
+    elif disicion == "2":
+        for book in Library:
+            printingStuff += book["Name"]
+        print([printingStuff])
+    elif disicion == "3":
+        for book in Library:
+            printingAuthors.add(book["Author"])
+        print(printingAuthors)
+    else:
+        print("\nThat is not an option.")
+    
 
 def main():
     Disicion = input("\nDo you want to 1: Add an item, 2: Remove an item, 3: Search for an item, 4: Display Library, 5: Exit ? \t")
@@ -77,7 +101,7 @@ def main():
     elif Disicion == "3":
         SearchForItem(Library)
     elif Disicion == "4":
-        print("\n", Library)
+        PrintingLbrary(Library)
     elif Disicion == "5":
         raise SystemExit
     else:
