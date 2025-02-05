@@ -1,37 +1,82 @@
-#Sawyer Wood, ProficiencyTest Secret Sypher.
-word = input("What is the word you want to Cipher/Decipher?: ")
-idk = input("Do you want to cipherify or decipherify?: ")
-alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", " ", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "1"]
-shiftedalphabet = ["c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "a", "b", ":", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "1"]
+import pygame
 
-def Cipherify(word):
-    wordspot = 0
-    alphabetspot = 0
-    stopoint = len(word)
-    while wordspot < stopoint:
-        if word[wordspot] == alphabet[alphabetspot]:
-            letter = shiftedalphabet[alphabetspot]
-            wordspot = wordspot + 1
-            alphabetspot = 0
-            print(letter)
-        else:
-            alphabetspot = alphabetspot + 1
+# Initialize Pygame
+pygame.init()
 
-def Decipherify(word):
-    wordspot = 0
-    alphabetspot = 0
-    stopoint = len(word)
+# Set up display
+screen = pygame.display.set_mode((800, 600))
+pygame.display.set_caption("Pong Game")
 
-    while wordspot < stopoint:
-        if word[wordspot] == shiftedalphabet[alphabetspot]:
-            letter = alphabet[alphabetspot]
-            wordspot = wordspot + 1
-            alphabetspot = 0
-            print( letter)
-        else:
-            alphabetspot = alphabetspot + 1
+# Paddle class
+class Paddle:
+    def __init__(self, x, y):
+        self.rect = pygame.Rect(x, y, 10, 100)
 
-if idk == str("cipher"):
-    Cipherify(word)
-elif idk == str("decipher"):
-    Decipherify(word)
+    def draw(self, screen):
+        pygame.draw.rect(screen, (255, 255, 255), self.rect)
+
+# Ball class
+class Ball:
+    def __init__(self, x, y):
+        self.rect = pygame.Rect(x, y, 10, 10)
+        self.dx = 3
+        self.dy = 3
+
+    def move(self):
+        self.rect.x += self.dx
+        self.rect.y += self.dy
+
+    def draw(self, screen):
+        pygame.draw.rect(screen, (255, 255, 255), self.rect)
+
+# Create paddles and ball
+paddle1 = Paddle(50, 250)
+paddle2 = Paddle(740, 250)
+ball = Ball(395, 295)
+
+# Scores
+score1 = 0
+score2 = 0
+font = pygame.font.Font(None, 74)
+
+# Main game loop
+running = True
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
+    keys = pygame.key.get_pressed()
+    if keys[pygame.K_w]:
+        paddle1.rect.y -= 5
+    if keys[pygame.K_s]:
+        paddle1.rect.y += 5
+    if keys[pygame.K_UP]:
+        paddle2.rect.y -= 5
+    if keys[pygame.K_DOWN]:
+        paddle2.rect.y += 5
+
+    ball.move()
+
+    if ball.rect.top <= 0 or ball.rect.bottom >= 600:
+        ball.dy *= -1
+    if ball.rect.colliderect(paddle1.rect) or ball.rect.colliderect(paddle2.rect):
+        ball.dx *= -1
+
+    if ball.rect.left <= 0:
+        score2 += 1
+        ball.rect.x, ball.rect.y = 395, 295
+    if ball.rect.right >= 800:
+        score1 += 1
+        ball.rect.x, ball.rect.y = 395, 295
+
+    screen.fill((0, 0, 0))
+    paddle1.draw(screen)
+    paddle2.draw(screen)
+    ball.draw(screen)
+
+    text = font.render(f"{score1} - {score2}", True, (255, 255, 255))
+    screen.blit(text, (340, 10))
+    pygame.display.flip()
+
+pygame.quit()
