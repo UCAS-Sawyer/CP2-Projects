@@ -32,5 +32,8 @@ def main():
     choice = input("\nWhat would you like to do? 1: See All Movie Titles, 2: Search, 3: See All Information, 4: Exit\n")
     if choice == "1":
         PrintMovieTitles(movies)
+    elif choice == "4":
+        raise SystemExit
 
-main()
+while True:
+    main()
