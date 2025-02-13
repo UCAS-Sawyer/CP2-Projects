@@ -27,15 +27,21 @@ def PrintMovieTitles(movies):
 
     print(movieTitles)
 
+def Search(movies):
+    print("\nWorkInProgress!")
 
 def main():
     choice = input("\nWhat would you like to do? 1: See All Movie Titles, 2: Search, 3: See All Information, 4: Exit\n")
     if choice == "1":
         PrintMovieTitles(movies)
+    elif choice == "2":
+        Search(movies)
     elif choice == "3":
         print(movies)
     elif choice == "4":
         raise SystemExit
+    else:
+        print("\nThat is not a valid option.")
 
 while True:
     main()
