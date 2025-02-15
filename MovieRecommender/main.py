@@ -44,6 +44,7 @@ def filters_function():
     while True:
         filter_pair = []
         filter_choice = input("\nWhat do you want you first filter to be, 1: Genre, 2: Directors, 3: Length, 4: Actors, 5: Move on\n")
+        filter_choice = filter_choice.strip()
 
         if filter_choice == "1":
             filter = "Genre"
@@ -57,8 +58,9 @@ def filters_function():
             break
         else:
             print("\nThat is not an option.")
+            continue
 
-        filter_data = input(f"\nWhat {filter} do you want to be recomended?\n")
+        filter_data = input(f"\nWhat {filter} do you want to be recomended?\n").lower()
         filter_data = filter_data.strip()
 
         if filter == "Lenght (min)":
@@ -78,6 +80,7 @@ def search(movies):
 
 def main():
     choice = input("\nWhat would you like to do? 1: See All Movie Titles, 2: Get Recomendations, 3: See All Information, 4: Exit\n")
+    choice = choice.strip()
     if choice == "1":
         print_movie_titles(movies)
     elif choice == "2":
