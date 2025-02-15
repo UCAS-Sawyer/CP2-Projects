@@ -76,6 +76,13 @@ def filters_function():
 
 def search(movies):
     filters = filters_function()
+    movie_data = list(movies)
+    for column, value in filters:
+        for movie in movie_data:
+            if movie[column] == value:
+                movie_data = movie_data.remove(movie)
+    print(movie_data)
+
 
 
 def main():
