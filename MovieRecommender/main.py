@@ -79,7 +79,11 @@ def search(movies):
     movie_data = list(movies)
     
     for column, value in filters:
-        movie_data = [movie for movie in movie_data if value in movie[column]]
+        if column == "Length (min)":
+            value = int(value)
+            movie_data = [movie for movie in movie_data if value - 10 <= int(movie[column]) <= value + 10]
+        else:
+            movie_data = [movie for movie in movie_data if value in movie[column]]
     
     print(movie_data)
 
