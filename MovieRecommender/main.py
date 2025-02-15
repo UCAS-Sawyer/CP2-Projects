@@ -77,12 +77,10 @@ def filters_function():
 def search(movies):
     filters = filters_function()
     movie_data = list(movies)
+    
     for column, value in filters:
-        for movie in movie_data:
-            print(movie)
-            if movie[column] != value:
-                print("inside if")
-                movie_data.remove(movie)
+        movie_data = [movie for movie in movie_data if value in movie[column]]
+    
     print(movie_data)
 
 
