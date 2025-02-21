@@ -2,6 +2,7 @@
 
 number_lines = 0
 
+#This is error handling for integers
 def intchecker(inputx):
     try:
         #Turning it into the int and returning it
@@ -12,6 +13,7 @@ def intchecker(inputx):
         print("\nThat is an invalid input.")
         return None
 
+#It is counting how many lines are 
 def number_of_lines(number_lines):
     with open("ToDoList/To_Do_List.txt", "r") as file:
         lines = file.readlines()
@@ -21,22 +23,30 @@ def number_of_lines(number_lines):
 def add_item(number_lines):
     with open("ToDoList/To_Do_List.txt", "a", newline= "") as file:
         item = input("\nWhat item would you like to add to your list?\n")
-        file.write(f"\n{number_lines + 1}. {item}")
+        file.write(f"{number_lines + 1}. {item}\n")
         print(f"\nItem |{item}| has been added to the list.")
 
 def check_off(number_lines):
     print("Check Off ITEM")
     
 def remove_item(number_lines):
-    with open("ToDoList/To_Do_List.txt", "w+", newline= "") as file:
-        changed_file = file
+    with open("ToDoList/To_Do_List.txt", "r") as file:
+        lines = file.readlines()
 
-        item_position_to_remove = intchecker(input("\nWhat item would you like to remove?(Give the number)\n"))
-        if item_position_to_remove != None:
-            for x in range(item_position_to_remove):
-                print(changed_file)
-                next(changed_file)
+    item_position_to_remove = intchecker(input("\nWhat item would you like to remove? (Give the number)\n"))
 
+    if item_position_to_remove is not None and 0 < item_position_to_remove <= number_lines:
+        lines.pop(item_position_to_remove - 1)  # Remove the specified line
+
+        with open("ToDoList/To_Do_List.txt", "w", newline="") as file:
+            for i, line in enumerate(lines, start=1):
+                file.write(f"{i}. {line.split('. ', 1)[1]}")  # Renumber the items
+
+        print(f"\nItem {item_position_to_remove} has been removed from the list.")
+    else:
+        print("\nThat is an invalid input or item number out of range.")
+
+#Prints the list
 def print_list():
     with open("ToDoList/To_Do_List.txt", "r") as file:
         for line in file:
