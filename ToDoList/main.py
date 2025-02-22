@@ -13,6 +13,12 @@ def intchecker(inputx):
         print("\nThat is an invalid input.")
         return None
 
+#This reads the lines
+def reading_lines():
+    with open("ToDoList/To_Do_List.txt", "r") as file:
+        lines = file.readlines()
+        return lines
+
 #It is counting how many lines are 
 def number_of_lines(number_lines):
     with open("ToDoList/To_Do_List.txt", "r") as file:
@@ -20,31 +26,36 @@ def number_of_lines(number_lines):
         number_lines = len(lines)
         return number_lines
 
+#This adds the item and numbers it
 def add_item(number_lines):
     with open("ToDoList/To_Do_List.txt", "a", newline= "") as file:
         item = input("\nWhat item would you like to add to your list?\n")
         file.write(f"{number_lines + 1}. {item}\n")
         print(f"\nItem |{item}| has been added to the list.")
 
+
+#This checks off the line with "DONE!"
 def check_off(number_lines):
-    with open("ToDoList/To_Do_List.txt", "r") as file:
-        lines = file.readlines()
-
+    lines = reading_lines()
     item_position_to_check = intchecker(input("\nWhat item would you like to check off? (Give the number)\n"))
-    with open("ToDoList/To_Do_List.txt", "w") as file:
-        if item_position_to_check is not None and 0 < item_position_to_check <= number_lines:
 
-            print(f"Item {item_position_to_check} has been checked off.")
-            item_position_to_check = item_position_to_check - 1 
-            line = lines[item_position_to_check]
+    #Checking to see if it is a valid input.
+    if item_position_to_check is not None and 0 < item_position_to_check <= number_lines:
+        print(f"Item {item_position_to_check} has been checked off.")
+        item_position_to_check = item_position_to_check - 1#Getting the right position
 
-            line.write(lines[item_position_to_check] + "DONE!")#Actually changing the line
-        else:
-            print("\nThat is an invalid input or item number out of range.")
+        lines[item_position_to_check] = lines[item_position_to_check].strip() + " DONE!\n"  # Marking the line as done
+
+        with open("ToDoList/To_Do_List.txt", "w") as file:
+            file.writelines(lines)
+
+    else:
+        print("\nThat is an invalid input or item number out of range.")
     
+
+#This removes a specified item from the to do lit
 def remove_item(number_lines):
-    with open("ToDoList/To_Do_List.txt", "r") as file:
-        lines = file.readlines()
+    lines = reading_lines()
 
     item_position_to_remove = intchecker(input("\nWhat item would you like to remove? (Give the number)\n"))
 
@@ -66,6 +77,8 @@ def print_list():
             line_trimed = line.strip()
             print(f"\n{line_trimed}")
 
+
+#This is the main function
 def main(number_lines):
     number_lines = number_of_lines(number_lines)
 
