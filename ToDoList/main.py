@@ -27,7 +27,20 @@ def add_item(number_lines):
         print(f"\nItem |{item}| has been added to the list.")
 
 def check_off(number_lines):
-    print("Check Off ITEM")
+    with open("ToDoList/To_Do_List.txt", "r") as file:
+        lines = file.readlines()
+
+    item_position_to_check = intchecker(input("\nWhat item would you like to check off? (Give the number)\n"))
+    with open("ToDoList/To_Do_List.txt", "w") as file:
+        if item_position_to_check is not None and 0 < item_position_to_check <= number_lines:
+
+            print(f"Item {item_position_to_check} has been checked off.")
+            item_position_to_check = item_position_to_check - 1 
+            line = lines[item_position_to_check]
+
+            line.write(lines[item_position_to_check] + "DONE!")#Actually changing the line
+        else:
+            print("\nThat is an invalid input or item number out of range.")
     
 def remove_item(number_lines):
     with open("ToDoList/To_Do_List.txt", "r") as file:
@@ -61,6 +74,7 @@ def main(number_lines):
     if choice == "1":
         add_item(number_lines)
     elif choice == "2":
+        print_list()
         check_off(number_lines)
     elif choice == "3":
         print_list()
