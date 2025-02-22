@@ -41,7 +41,7 @@ def check_off(number_lines):
 
     #Checking to see if it is a valid input.
     if item_position_to_check is not None and 0 < item_position_to_check <= number_lines:
-        print(f"Item {item_position_to_check} has been checked off.")
+        print(f"\nItem {item_position_to_check} has been checked off.")
         item_position_to_check = item_position_to_check - 1#Getting the right position
 
         lines[item_position_to_check] = lines[item_position_to_check].strip() + " DONE!\n"  # Marking the line as done
