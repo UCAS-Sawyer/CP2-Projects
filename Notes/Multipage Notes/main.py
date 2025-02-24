@@ -6,3 +6,14 @@ from calc import addition as add, subtraction as sub, numb as num
 print(num)
 print(add())
 print(sub())
+
+#Its better to return a variable from a function
+
+def get_user_info():
+    name = input("WHATISYONAMEBOZO? ")
+    age = input("WHATISYOAGEBOZO? ")
+
+    return name, age
+
+names, ages = get_user_info()
+print(ages)
