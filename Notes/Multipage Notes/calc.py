@@ -1,10 +1,15 @@
 #Sawyer wood, calc for multiple python pages notes
 
-def addition(x, y):
-    return(x + y)
-def subtraction(x, y):
-    return(x - y)
-def multiplication(x, y):
-    return(x*y)
-def division(x, y):
-    return(x/y)
+numb = 10
+
+def get_num():
+    return int(input("Give a number."))
+
+def addition():
+    return(get_num() + get_num())
+def subtraction():
+    return(get_num() - get_num())
+def multiplication():
+    return(get_num()*get_num())
+def division():
+    return(get_num()/get_num())
