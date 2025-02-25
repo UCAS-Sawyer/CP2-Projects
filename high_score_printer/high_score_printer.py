@@ -19,13 +19,13 @@ def high_score_printer_complexgame(file_path):
             #Creating the dictionary
             item = {
                 "name" : row[0],
-                "highscore" : row[1]
+                "highscore" : int(row[1])
             }
 
             #Adding the item
             highscores.append(item)
             #sorting it by score
-        sorted_by_score = sorted(highscores, key = lambda gamer: gamer["highscore"])
+        sorted_by_score = sorted(highscores, key = lambda gamer: gamer["highscore"], reverse = True)
 
         #Printing all the scores with the names and ranks
         print("Rank    Name     Score")
