@@ -24,14 +24,18 @@ def high_score_printer_complexgame(file_path):
 
             #Adding the item
             highscores.append(item)
-
+            #sorting it by score
         sorted_by_score = sorted(highscores, key = lambda gamer: gamer["highscore"])
+
+        #Printing all the scores with the names and ranks
+        print("Rank    Name     Score")
         for x in sorted_by_score:
             player_number += 1
             if player_number <= 5:
-                print(x["name"], x["highscore"])
+                print(f"{player_number}\t{x["name"]}\t {x["highscore"]}")
             else:
                 break
+    #Back to where you came from
     return
 
 high_score_printer_complexgame(file_path)
