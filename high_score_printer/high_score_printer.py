@@ -2,37 +2,36 @@
 
 import csv
 
-highscores = []
+file_path = "high_score_printer/highscores.csv"
 
-with open("high_score_printer/highscores.csv") as file:
-    csv_reader = csv.reader(file)
+def high_score_printer_complexgame(file_path):
 
-    for row in csv_reader:
-        #Creating the dictionary
-        item = {
-            "name" : row[0],
-            "highscore" : row[1]
-        }
+    #Clearing Screen
+    print("\033[H\033[J")
 
-        #Adding the item
-        highscores.append(item)
+    highscores = []
+    player_number = 0
 
-    sorted_by_score = sorted(highscores, key = lambda gamer: gamer["highscore"])
-    print(sorted_by_score)
+    with open(file_path, "r") as file:
+        csv_reader = csv.reader(file)
 
-#EX: of lambda function
-students = [
-    {"Name" : 'Alice', 
-     "Letter" : 'B', 
-     "Age": 18},
-     {"Name" : 'Alice', 
-     "Letter" : 'B', 
-     "Age": 17},
-     {"Name" : 'Alice', 
-     "Letter" : 'B', 
-     "Age": 19}
-]
+        for row in csv_reader:
+            #Creating the dictionary
+            item = {
+                "name" : row[0],
+                "highscore" : row[1]
+            }
 
-# Sort by age (second element of each tuple)
-sorted_by_age = sorted(students, key=lambda student: student["Age"])
-#print(sorted_by_age)
+            #Adding the item
+            highscores.append(item)
+
+        sorted_by_score = sorted(highscores, key = lambda gamer: gamer["highscore"])
+        for x in sorted_by_score:
+            player_number += 1
+            if player_number <= 5:
+                print(x["name"], x["highscore"])
+            else:
+                break
+    return
+
+high_score_printer_complexgame(file_path)
