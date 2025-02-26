@@ -1,12 +1,13 @@
-#Sawyer Wood, Functions to print the top five highscores
+#Sawyer Wood, Printer for the high scores
 
 import csv
 import fontstyle
 
+#File path needed to be sent when calling the function
 file_path = "high_score_printer/highscores.csv"
 
 #It requires the file path to be sent to it
-def high_score_printer_complexgame(file_path):
+def high_score_printer(file_path):
 
     #Clearing Screen
     print("\033[H\033[J")
@@ -30,10 +31,11 @@ def high_score_printer_complexgame(file_path):
         sorted_by_score = sorted(highscores, key = lambda gamer: gamer["highscore"], reverse = True)
 
         #Printing all the scores with the names and ranks
-        print("Rank    Name    Score")
+        print("\tRank    Name    Score")
         for x in sorted_by_score:
             player_number += 1
             if player_number <= 5:
+                #Printing the 5 top scores with cool special colors!
                 if player_number == 1:
                     print(fontstyle.apply(f"\t{player_number}\t{x["name"]}\t{x["highscore"]}", "underline/bold/Italic/yellow"))
                 elif player_number == 2:
@@ -49,4 +51,4 @@ def high_score_printer_complexgame(file_path):
     #Back to where you came from
     return
 
-high_score_printer_complexgame(file_path)
+high_score_printer(file_path)
