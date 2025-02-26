@@ -19,6 +19,8 @@ def high_score_printer(file_path):
         csv_reader = csv.reader(file)
 
         for row in csv_reader:
+            if len(row) != 2:
+                continue
             #Creating the dictionary
             item = {
                 "name" : row[0],
