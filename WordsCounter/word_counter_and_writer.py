@@ -21,7 +21,7 @@ def word_counter(filepath):
 def word_counter_writer(word_count, filepath, lines):
     line_count = len(lines)
 
-    if "Word Count:" in lines[line_count - 1]:
+    if "Word Count: " and "Date/Time: "in lines[line_count - 1]:
         #If the file has already been counted
 
         with open(filepath, "w") as file:
