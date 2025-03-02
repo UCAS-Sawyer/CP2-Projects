@@ -4,6 +4,7 @@ from time_management import current_time
 
 def word_counter(filepath):
     with open(filepath, "r") as file:
+
         all_words = []
         lines = file.readlines()
 

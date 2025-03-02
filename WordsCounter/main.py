@@ -10,12 +10,28 @@ def relative_filepath_checker(filepath):
         print("\nThat is not a valid filepath")
         return False
 
+def file_contents_checker(filepath):
+    with open(filepath, "r") as file:
+        try:
+            lines = file.readlines()
+            line_count = len(lines)
+            last_line = lines[line_count - 1]
+            return True
+        except:
+            print("\nThat file has no contents.")
+            return False
+
 def checking_word_count():
     filepath = input("\nWhat is the relative file path?\n")
     filepath = filepath.replace("\\", "/")
 
     if relative_filepath_checker(filepath) == True:
-        word_counter(filepath)
+        if file_contents_checker(filepath) == True:
+            word_counter(filepath)
+        else:
+            return
+    else:
+        return
 
 #This function is the Ui
 def main():
