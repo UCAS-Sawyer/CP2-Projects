@@ -24,8 +24,8 @@ def word_counter_writer(word_count, filepath, lines):
         #If the file has already been counted
 
         with open(filepath, "w") as file:
-            lines[line_count - 1] = f"Word Count: {word_count - 3} Date/Time: {current_time()}"
-            print(f"\nWord count of {word_count - 3} has been added.")
+            lines[line_count - 1] = f"Word Count: {word_count - 6} Date/Time: {current_time()}"
+            print(f"\nWord count of {word_count - 6} has been added.")
             file.writelines(lines)
             return
         
