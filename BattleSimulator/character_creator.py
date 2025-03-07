@@ -4,6 +4,7 @@ import csv
 
 from checkers import intchecker
 from checkers import name_checker
+from main import main
 
 #List of al the characters
 characters = []
@@ -28,6 +29,8 @@ def player_list_creator():
 
 def character_writer_to_file(health, strength, defense, speed):
     print("HEHEHEHEHE")
+    main()
+    
 
 def character_creator():
     stat_points_left = 10
@@ -86,8 +89,11 @@ def character_creator():
                             stat_points_left = stat_points_left_checker(defense_points)
 
                             print(f"\nThe rest of your points will go to speed. The amount is {stat_points_left}")
-                            speed += stat_points_left
-                            character_writer_to_file(health, strength, defense, speed)
+                            if stat_points_left == 0:
+                                character_writer_to_file(health, strength, defense, speed)
+                            else:
+                                speed += stat_points_left
+                                character_writer_to_file(health, strength, defense, speed)
                         else:
                             print(not_valind_number)
                             character_creation_main()
