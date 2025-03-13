@@ -21,14 +21,17 @@ def player_list_creator():
                 "health" : int(row[1]),
                 "strength" : int(row[2]),
                 "defense" : int(row[3]),
-                "speed" : int(row[4])
+                "speed" : int(row[4]),
+                "level" : int(row[5])
             }
             characters.append(player)
 
         return
 
-def character_writer_to_file(health, strength, defense, speed):
-    print("HEHEHEHEHE")
+def character_writer_to_file(health, strength, defense, speed, name):
+    with open("BattleSimulator/characters.csv", "a") as file:
+        file.write(f"{name},{health},{strength},{defense},{speed},0\n")
+        print(f"The character {name} has been created.")
     main()
     
 
@@ -90,10 +93,10 @@ def character_creator():
 
                             print(f"\nThe rest of your points will go to speed. The amount is {stat_points_left}")
                             if stat_points_left == 0:
-                                character_writer_to_file(health, strength, defense, speed)
+                                character_writer_to_file(health, strength, defense, speed, name)
                             else:
                                 speed += stat_points_left
-                                character_writer_to_file(health, strength, defense, speed)
+                                character_writer_to_file(health, strength, defense, speed, name)
                         else:
                             print(not_valind_number)
                             character_creation_main()
