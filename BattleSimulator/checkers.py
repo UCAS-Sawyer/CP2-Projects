@@ -18,8 +18,8 @@ def name_checker(characters):
 
     #Checking if the name is taken
     for player in characters:
-        if player[0] == name:
+        if player["name"] == name:
             print("\nThat name is already taken, please try again.")
-            name_checker()
-        
-    return name
+            name_checker(characters)
+        else:
+            return name

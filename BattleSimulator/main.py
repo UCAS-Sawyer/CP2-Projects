@@ -1,5 +1,5 @@
 #Sawyer Wood, Battle Simulator main
-from character_creator import character_creation_main
+from character_creation_main import character_creation_main
 from fighting import fighting_battle as fight
 
 #This is the main function
