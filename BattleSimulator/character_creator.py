@@ -45,7 +45,7 @@ def character_creator():
     not_valind_number = "\nThat is an invalid input.(not a valid number of points)"
 
     #Getting name
-    name = name_checker(characters)
+    name = name_checker(input("\nWelcome to the character creator! Please enter the name of your character.\n"), characters)
     print(f"\nThe name of your character is now {name}.")
 
     #Checker for stat points left
@@ -60,6 +60,7 @@ def character_creator():
         if stat_points_left == 0:
             print("\nYou have used all of your points, the othe stats will be set to their base values.")
             character_writer_to_file(health, strength, defense, speed, name)
+            return
         else:
             return stat_points_left
 
@@ -73,7 +74,9 @@ def character_creator():
         if 0 <= health_points and health_points <=stat_points_left:
             health += health_points
             stat_points_left = stat_points_left_checker(health_points)
-            
+            if stat_points_left == None:
+                return
+
             #Getting the strength stat and checking to make sure it is valid
             strength_points = intchecker(input(f"\nHow many points of your {stat_points_left} left will you allowcate to Strength(It will increase the amount of dmg you deal)?\n"))
 
@@ -81,6 +84,8 @@ def character_creator():
                 if 0 <= strength_points and strength_points <= stat_points_left:
                     strength += strength_points
                     stat_points_left = stat_points_left_checker(strength_points)
+                    if stat_points_left == None:
+                        return
 
                     #Getting the Defense stat and checking to make sure it is valid
                     defense_points = intchecker(input(f"How many points of your {stat_points_left} left will you allowcate to Defense(It will decrease the dmg you take)?\n"))
@@ -89,6 +94,8 @@ def character_creator():
                         if 0 <= defense_points and defense_points <= stat_points_left:
                             defense += defense_points
                             stat_points_left = stat_points_left_checker(defense_points)
+                            if stat_points_left == None:
+                                return
 
                             print(f"\nThe rest of your points will go to speed. The amount is {stat_points_left}")
                             if stat_points_left == 0:
