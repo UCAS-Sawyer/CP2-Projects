@@ -28,13 +28,14 @@ def player_list_creator():
 
         return characters
 
+#Writing the character with all their stats onto the csv file
 def character_writer_to_file(health, strength, defense, speed, name):
     with open("BattleSimulator/characters.csv", "a") as file:
         file.write(f"{name},{health},{strength},{defense},{speed},0\n")
         print(f"\nThe character {name} has been created.")
     return
     
-
+#Creating the character
 def character_creator(characters):
     stat_points_left = 10
     health = 10
@@ -71,6 +72,7 @@ def character_creator(characters):
     #Getting the health stat and checking to make sure it is valid
     health_points = intchecker(input("\nHow many points will you allowcate to Health(It will increase the amount of health you have)?\n"))
 
+    #Checking if everything is valid and if they have enough points
     if type(health_points) == int:
         if 0 <= health_points and health_points <=stat_points_left:
             health += health_points
@@ -81,6 +83,7 @@ def character_creator(characters):
             #Getting the strength stat and checking to make sure it is valid
             strength_points = intchecker(input(f"\nHow many points of your {stat_points_left} left will you allowcate to Strength(It will increase the amount of dmg you deal)?\n"))
 
+            #Checking if everything is valid and if they have enough points
             if type(strength_points) == int:
                 if 0 <= strength_points and strength_points <= stat_points_left:
                     strength += strength_points
@@ -91,6 +94,7 @@ def character_creator(characters):
                     #Getting the Defense stat and checking to make sure it is valid
                     defense_points = intchecker(input(f"How many points of your {stat_points_left} left will you allowcate to Defense(It will decrease the dmg you take)?\n"))
 
+                    #Checking if everything is valid and if they have enough points
                     if type(defense_points) == int:
                         if 0 <= defense_points and defense_points <= stat_points_left:
                             defense += defense_points
@@ -98,6 +102,7 @@ def character_creator(characters):
                             if stat_points_left == None:
                                 return
 
+                            #The rest of the points will go to speed
                             print(f"\nThe rest of your points will go to speed. The amount is {stat_points_left}")
                             if stat_points_left == 0:
                                 character_writer_to_file(health, strength, defense, speed, name)

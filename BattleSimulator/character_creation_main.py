@@ -3,6 +3,7 @@
 from character_creator import player_list_creator
 from character_creator import character_creator
 
+#The main for the caracter creation
 def character_creation_main():
     choice = input("\nDo you want to continue to create a character, 1. Yes, 2. No ?\n")
     if choice == "1":
