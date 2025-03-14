@@ -1,6 +1,6 @@
 #Sawyer Wood, Battle Simulator main
 from character_creation_main import character_creation_main
-from fighting import fighting_battle as fight
+from fighting import fighting_main
 
 #This is the main function
 def main():
@@ -9,7 +9,7 @@ def main():
     if choice == "1":
         character_creation_main()
     elif choice == "2":
-        fight()
+        fighting_main()
     elif choice == "3":
         raise SystemExit
     else:

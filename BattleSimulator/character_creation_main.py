@@ -6,8 +6,8 @@ from character_creator import character_creator
 def character_creation_main():
     choice = input("\nDo you want to continue to create a character, 1. Yes, 2. No ?\n")
     if choice == "1":
-        player_list_creator()
-        character_creator()
+        characters = player_list_creator()
+        character_creator(characters)
     elif choice == "2":
         return
     else:

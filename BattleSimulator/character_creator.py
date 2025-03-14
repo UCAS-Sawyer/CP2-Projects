@@ -5,10 +5,10 @@ import csv
 from checkers import intchecker
 from checkers import name_checker
 
-#List of al the characters
-characters = []
-
 def player_list_creator():
+    #List of all the characters
+    characters = []
+
     with open("BattleSimulator/characters.csv", "r") as file:
         csv_reader = csv.reader(file)
         next(csv_reader)
@@ -26,7 +26,7 @@ def player_list_creator():
             }
             characters.append(player)
 
-        return
+        return characters
 
 def character_writer_to_file(health, strength, defense, speed, name):
     with open("BattleSimulator/characters.csv", "a") as file:
@@ -35,7 +35,7 @@ def character_writer_to_file(health, strength, defense, speed, name):
     return
     
 
-def character_creator():
+def character_creator(characters):
     stat_points_left = 10
     health = 10
     strength = 1
