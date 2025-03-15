@@ -2,6 +2,7 @@
 
 import csv
 import random
+import time
 
 from character_creator import player_list_creator
 from checkers import intchecker
@@ -12,6 +13,7 @@ def fighting_main():
     if choice == "1":
         characters = player_list_creator()
         battle_character(characters)
+        fighting_main()
     elif choice == "2":
         return
     else:
@@ -96,28 +98,36 @@ def battle(chosen_character):
 
             lvlup_stat_change = random.choice(stats)
             chosen_character[lvlup_stat_change] += 2
+
+            time.sleep(0.7)
             print(f"\nYou have leveled up! {lvlup_stat_change} is now {chosen_character[lvlup_stat_change]}.")
+            time.sleep(0.7)
             print(f"\nYou have defeated the {monster['name']} and have gained {monster['xp']} xp, so you are now Level: {chosen_character['level']} and have {chosen_character['xp']} xp.")
+
 
             return lvlup_stat_change, chosen_character["xp"], chosen_character["level"], chosen_character[lvlup_stat_change]
         else:
+            time.sleep(0.7)
             print(f"\nYou have defeated the {monster['name']} and have gained {monster['xp']} xp, so you are now Level: {chosen_character['level']} and have {chosen_character['xp']} xp.")
             return None
     
     #Picking which monster to fight
     monster = random.choice(monsters)
+    print(f"\nYou are going to fight a {monster['name']}.")
 
     #Setting current health to base health
     character_health = chosen_character["health"]
 
     #Deciding who goes first
     if chosen_character["speed"] > monster["speed"]:
+        time.sleep(0.7)
         print("\nYou get to go first.")
 
         #While the monster is still alive
         while monster["health"] > 0:
             monster["health"] -= chosen_character["strength"] + 2
-            print(f"\nYou attack the {monster['name']} and do {chosen_character['strength'] + 2} dmg to it.")
+            time.sleep(0.7)
+            print(f"\nYou attack the {monster['name']} and do {chosen_character['strength'] + 2} dmg to the {monster['name']}.")
             
             if monster["health"] <= 0:
                 if monster_dead() == None:
@@ -132,6 +142,7 @@ def battle(chosen_character):
                     #WRITE THE CHARACTER AGAIN PLS
                     return
             else:
+                time.sleep(0.7)
                 print(f"That hit did not kill the {monster['name']}.")
 
     else:
