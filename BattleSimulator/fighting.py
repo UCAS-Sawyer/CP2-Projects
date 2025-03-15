@@ -115,7 +115,7 @@ def battle(chosen_character,character_number):
             time.sleep(0.7)
             print(f"\nYou have defeated the {monster['name']} and have gained {monster['xp']} xp, so you are now Level: {chosen_character['level']} and have {new_xp} xp.")
 
-        return lvlup_stat_change, new_xp, chosen_character["level"], chosen_character[lvlup_stat_change]
+        return lvlup_stat_change, new_xp, chosen_character["level"]
     
     #Picking which monster to fight
     monster = random.choice(monsters)
@@ -137,7 +137,7 @@ def battle(chosen_character,character_number):
             
             #If the monster is dead do lvl stuffffff
             if monster["health"] <= 0:
-                lvlup_stat_change, xp, level, stat_change = monster_dead()
+                lvlup_stat_change, xp, level = monster_dead()
                 if chosen_character["level"] == level:
                     chosen_character["xp"] = xp
                     print(f"\nYou have defeated the {monster['name']} and have gained {monster['xp']} xp, so you are now Level: {chosen_character['level']} and have {chosen_character['xp']} xp.")
@@ -145,7 +145,6 @@ def battle(chosen_character,character_number):
                     #Setting the stats to their new values
                     chosen_character["xp"] = xp
                     chosen_character["level"] = level
-                    chosen_character[lvlup_stat_change] = stat_change
                 update_character()
                 return
             
@@ -184,23 +183,20 @@ def battle(chosen_character,character_number):
             monster["health"] -= chosen_character["strength"] + 2
             time.sleep(0.7)
             print(f"\nYou attack the {monster['name']} and do {chosen_character['strength'] + 2} dmg to the {monster['name']}.")
-            
-            if monster["health"] <= 0:
-                if type(monster_dead()) == int:
-                    chosen_character["xp"] = monster_dead()
-                    print(f"\nYou have defeated the {monster['name']} and have gained {monster['xp']} xp, so you are now Level: {chosen_character['level']} and have {chosen_character['xp']} xp.")
-                    update_character()
-                    return
-                else:
-                    lvlup_stat_change, xp, level, stat_change = monster_dead()
 
+            #If the monster is dead do lvl stuffffff
+            if monster["health"] <= 0:
+                lvlup_stat_change, xp, level = monster_dead()
+                if chosen_character["level"] == level:
+                    chosen_character["xp"] = xp
+                    print(f"\nYou have defeated the {monster['name']} and have gained {monster['xp']} xp, so you are now Level: {chosen_character['level']} and have {chosen_character['xp']} xp.")
+                else:
                     #Setting the stats to their new values
                     chosen_character["xp"] = xp
                     chosen_character["level"] = level
-                    chosen_character[lvlup_stat_change] = stat_change
-
-                    update_character()
-                    return
+                update_character()
+                return
+            
             else:
                 time.sleep(0.7)
                 print(f"\nThat hit did not kill the {monster['name']}.")
