@@ -1,6 +1,7 @@
 #Sawyer Wood, Battle Simulator fighting and battle sim
 
 import csv
+import random
 
 from character_creator import player_list_creator
 from checkers import intchecker
@@ -59,6 +60,7 @@ def battle_character(characters):
             chosen_character = characters[character_choice - 1]
             print(f'\nYou have chosen, {chosen_character["name"]}, to fight with.')
             battle(chosen_character)
+            return
         else:
             print("\nThat character number does not exist, try again.")
             fighting_main()
@@ -78,3 +80,59 @@ def battle(chosen_character):
     else:
         monsters = monster_list_creator("BattleSimulator/csvs/hard_monsters.csv")
         print(monsters)
+
+    #Checking if the monster is dead and doing lvl up stuff
+    def monster_dead():
+        nonlocal chosen_character, monster
+
+        #Give the character xp
+        chosen_character["xp"] += monster["xp"]
+        #If the character has enough xp to level up they level up and gain a stat
+        if chosen_character["xp"] >= chosen_character["level"] * 15:
+            stats = ["health","strength","defense","speed"]
+            
+            chosen_character["xp"] -= chosen_character["level"] * 15
+            chosen_character["level"] += 1
+
+            lvlup_stat_change = random.choice(stats)
+            chosen_character[lvlup_stat_change] += 2
+            print(f"\nYou have leveled up! {lvlup_stat_change} is now {chosen_character[lvlup_stat_change]}.")
+            print(f"\nYou have defeated the {monster['name']} and have gained {monster['xp']} xp, so you are now Level: {chosen_character['level']} and have {chosen_character['xp']} xp.")
+
+            return lvlup_stat_change, chosen_character["xp"], chosen_character["level"], chosen_character[lvlup_stat_change]
+        else:
+            print(f"\nYou have defeated the {monster['name']} and have gained {monster['xp']} xp, so you are now Level: {chosen_character['level']} and have {chosen_character['xp']} xp.")
+            return None
+    
+    #Picking which monster to fight
+    monster = random.choice(monsters)
+
+    #Setting current health to base health
+    character_health = chosen_character["health"]
+
+    #Deciding who goes first
+    if chosen_character["speed"] > monster["speed"]:
+        print("\nYou get to go first.")
+
+        #While the monster is still alive
+        while monster["health"] > 0:
+            monster["health"] -= chosen_character["strength"] + 2
+            print(f"\nYou attack the {monster['name']} and do {chosen_character['strength'] + 2} dmg to it.")
+            
+            if monster["health"] <= 0:
+                if monster_dead() == None:
+                    pass
+                else:
+                    lvlup_stat_change, xp, level, stat_change = monster_dead()
+
+                    #Setting the stats to their new values
+                    chosen_character["xp"] = xp
+                    chosen_character["level"] = level
+                    chosen_character[lvlup_stat_change] = stat_change
+                    #WRITE THE CHARACTER AGAIN PLS
+                    return
+            else:
+                print(f"That hit did not kill the {monster['name']}.")
+
+    else:
+        print(f"\nThe {monster['name']} gets to go first.")

@@ -1,10 +1,10 @@
-name,health,strength,defense,speed,level
-johny deep,100,100,100,100,100
-johny deppp,15,4,2,2,5
-cally johnson,14,4,2,3,0
-johny deep the 32nd,20,1,1,1,0
-Johny Deeppp the 69th,20,1,1,1,0
-Johny deeeeeep,20,1,1,1,0
-joeschmoe,20,1,1,1,0
-blah,13,4,3,3,0
-a,11,2,2,8,0
+name,health,strength,defense,speed,level,xp
+johny deep,100,100,100,100,100,0
+johny deppp,15,4,2,2,5,0
+cally johnson,14,4,2,3,0,0
+johny deep the 32nd,20,1,1,1,0,0
+Johny Deeppp the 69th,20,1,1,1,0,0
+Johny deeeeeep,20,1,1,1,0,0
+joeschmoe,20,1,1,1,0,0
+blah,13,4,3,3,0,0
+a,11,2,2,8,0,0

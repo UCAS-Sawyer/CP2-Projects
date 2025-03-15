@@ -22,7 +22,8 @@ def player_list_creator():
                 "strength" : int(row[2]),
                 "defense" : int(row[3]),
                 "speed" : int(row[4]),
-                "level" : int(row[5])
+                "level" : int(row[5]),
+                "xp" : int(row[5])
             }
             characters.append(player)
 
