@@ -111,19 +111,10 @@ def character_creator(characters):
                             else:
                                 speed += stat_points_left
                                 character_writer_to_file(health, strength, defense, speed, name)
-                                return
                         else:
                             print(not_valind_number)
-                            return
-                    else:
-                        return
                 else:
                     print(not_valind_number)
-                    return
-            else:
-                return
         else:
             print(not_valind_number)
-            return
-    else:
-        return
+    return
