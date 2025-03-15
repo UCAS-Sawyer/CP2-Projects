@@ -52,7 +52,7 @@ def battle_character(characters):
     #Printing all the characters
     for character in characters:
         character_number += 1
-        print(f"{character_number}. Name: {character['name']}, Health: {character['health']}, Strength: {character['strength']}, Defense: {character['defense']}, Speed: {character['speed']}, Level: {character['level']}")
+        print(f"{character_number}. Name: {character['name']}, Health: {character['health']}, Strength: {character['strength']}, Defense: {character['defense']}, Speed: {character['speed']}, Level: {character['level']}, Xp: {character['xp']}")
     
     #Choosing the character and error handling
     character_choice = intchecker(input("\nEnter the number of the character: "))
@@ -66,10 +66,8 @@ def battle_character(characters):
             return
         else:
             print("\nThat character number does not exist, try again.")
-            fighting_main()
             return
     else:
-        fighting_main()
         return
     
 def battle(chosen_character,character_number):
@@ -98,12 +96,13 @@ def battle(chosen_character,character_number):
         nonlocal chosen_character, monster
 
         #Give the character xp
-        chosen_character["xp"] += monster["xp"]
+        new_xp = chosen_character["xp"] + monster["xp"]
+
         #If the character has enough xp to level up they level up and gain a stat
-        if chosen_character["xp"] >= chosen_character["level"] * 15:
+        if new_xp >= chosen_character["level"] * 15:
             stats = ["health","strength","defense","speed"]
             
-            chosen_character["xp"] -= chosen_character["level"] * 15
+            new_xp -= chosen_character["level"] * 15
             chosen_character["level"] += 1
 
             lvlup_stat_change = random.choice(stats)
@@ -112,14 +111,14 @@ def battle(chosen_character,character_number):
             time.sleep(0.7)
             print(f"\nYou have leveled up! {lvlup_stat_change} is now {chosen_character[lvlup_stat_change]}.")
             time.sleep(0.7)
-            print(f"\nYou have defeated the {monster['name']} and have gained {monster['xp']} xp, so you are now Level: {chosen_character['level']} and have {chosen_character['xp']} xp.")
+            print(f"\nYou have defeated the {monster['name']} and have gained {monster['xp']} xp, so you are now Level: {chosen_character['level']} and have {new_xp} xp.")
 
 
-            return lvlup_stat_change, chosen_character["xp"], chosen_character["level"], chosen_character[lvlup_stat_change]
+            return lvlup_stat_change, new_xp, chosen_character["level"], chosen_character[lvlup_stat_change]
         else:
             time.sleep(0.7)
-            print(f"\nYou have defeated the {monster['name']} and have gained {monster['xp']} xp, so you are now Level: {chosen_character['level']} and have {chosen_character['xp']} xp.")
-            return None
+            print(f"\nYou have defeated the {monster['name']} and have gained {monster['xp']} xp, so you are now Level: {chosen_character['level']} and have {new_xp} xp.")
+            return
     
     #Picking which monster to fight
     monster = random.choice(monsters)
@@ -158,7 +157,7 @@ def battle(chosen_character,character_number):
                 print(f"\nThat hit did not kill the {monster['name']}.")
             
             #Monster attacks
-            ccharacter_health -= monster["strength"]
+            character_health -= monster["strength"]
             time.sleep(0.7)
             print(f"\nThe {monster['name']} attacks {chosen_character['name']} and does {monster['strength']} dmg to {chosen_character['name']}. {chosen_character['name']} has {character_health} hp left.")
 
