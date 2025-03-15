@@ -168,4 +168,43 @@ def battle(chosen_character,character_number):
                 pass
 
     else:
+        time.sleep(0.7)
         print(f"\nThe {monster['name']} gets to go first.")
+
+        #While the monster is still alive
+        while monster["health"] > 0:
+            #Monster attacks
+            character_health -= monster["strength"]
+            time.sleep(0.7)
+            print(f"\nThe {monster['name']} attacks {chosen_character['name']} and does {monster['strength']} dmg to {chosen_character['name']}. {chosen_character['name']} has {character_health} hp left.")
+
+            if character_health <= 0:
+                print(f"\n{chosen_character['name']} has died.")
+                return
+            else:
+                pass
+
+            monster["health"] -= chosen_character["strength"] + 2
+            time.sleep(0.7)
+            print(f"\nYou attack the {monster['name']} and do {chosen_character['strength'] + 2} dmg to the {monster['name']}.")
+            
+            time.sleep(0.7)
+            print(f"\nYou attack the {monster['name']} and do {chosen_character['strength'] + 2} dmg to the {monster['name']}.")
+            
+            if monster["health"] <= 0:
+                if monster_dead() == None:
+                    update_character()
+                    return
+                else:
+                    lvlup_stat_change, xp, level, stat_change = monster_dead()
+
+                    #Setting the stats to their new values
+                    chosen_character["xp"] = xp
+                    chosen_character["level"] = level
+                    chosen_character[lvlup_stat_change] = stat_change
+
+                    update_character()
+                    return
+            else:
+                time.sleep(0.7)
+                print(f"\nThat hit did not kill the {monster['name']}.")
