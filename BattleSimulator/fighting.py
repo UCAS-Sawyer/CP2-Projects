@@ -14,6 +14,7 @@ def fighting_main():
         characters = player_list_creator()
         battle_character(characters)
         fighting_main()
+        return
     elif choice == "2":
         return
     else:
@@ -61,7 +62,7 @@ def battle_character(characters):
 
             chosen_character = characters[character_choice - 1]
             print(f'\nYou have chosen, {chosen_character["name"]}, to fight with.')
-            battle(chosen_character)
+            battle(chosen_character,character_choice)
             return
         else:
             print("\nThat character number does not exist, try again.")
@@ -71,17 +72,26 @@ def battle_character(characters):
         fighting_main()
         return
     
-def battle(chosen_character):
+def battle(chosen_character,character_number):
     #Setting the monsters according to the character lvl
     if chosen_character["level"] >=0 and chosen_character["level"] <= 3:
         monsters = monster_list_creator("BattleSimulator/csvs/easy_monsters.csv")
-        print(monsters)
     elif chosen_character["level"] >3 and chosen_character["level"] <= 8:
         monsters = monster_list_creator("BattleSimulator/csvs/medium_monsters.csv")
-        print(monsters)
     else:
         monsters = monster_list_creator("BattleSimulator/csvs/hard_monsters.csv")
-        print(monsters)
+
+    def update_character():
+        #writing the characters new stats to csv
+        with open("BattleSimulator/csvs/characters.csv", "r") as file:
+            lines = list(csv.reader(file))
+
+        with open("BattleSimulator/csvs/characters.csv", "w", newline='') as file:
+            writer = csv.writer(file)
+            lines[character_number] = chosen_character["name"],chosen_character["health"],chosen_character["strength"],chosen_character["defense"],chosen_character["speed"],chosen_character["level"],chosen_character["xp"]
+            writer.writerows("")
+            writer.writerows(lines)
+            return
 
     #Checking if the monster is dead and doing lvl up stuff
     def monster_dead():
@@ -131,7 +141,8 @@ def battle(chosen_character):
             
             if monster["health"] <= 0:
                 if monster_dead() == None:
-                    pass
+                    update_character()
+                    return
                 else:
                     lvlup_stat_change, xp, level, stat_change = monster_dead()
 
@@ -139,11 +150,23 @@ def battle(chosen_character):
                     chosen_character["xp"] = xp
                     chosen_character["level"] = level
                     chosen_character[lvlup_stat_change] = stat_change
-                    #WRITE THE CHARACTER AGAIN PLS
+
+                    update_character()
                     return
             else:
                 time.sleep(0.7)
-                print(f"That hit did not kill the {monster['name']}.")
+                print(f"\nThat hit did not kill the {monster['name']}.")
+            
+            #Monster attacks
+            ccharacter_health -= monster["strength"]
+            time.sleep(0.7)
+            print(f"\nThe {monster['name']} attacks {chosen_character['name']} and does {monster['strength']} dmg to {chosen_character['name']}. {chosen_character['name']} has {character_health} hp left.")
+
+            if character_health <= 0:
+                print(f"\n{chosen_character['name']} has died.")
+                return
+            else:
+                pass
 
     else:
         print(f"\nThe {monster['name']} gets to go first.")

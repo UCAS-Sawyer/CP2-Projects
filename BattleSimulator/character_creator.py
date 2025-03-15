@@ -32,7 +32,7 @@ def player_list_creator():
 #Writing the character with all their stats onto the csv file
 def character_writer_to_file(health, strength, defense, speed, name):
     with open("BattleSimulator/csvs/characters.csv", "a") as file:
-        file.write(f"{name},{health},{strength},{defense},{speed},0\n")
+        file.write(f"{name},{health},{strength},{defense},{speed},1,0\n")
         print(f"\nThe character {name} has been created.")
     return
     
