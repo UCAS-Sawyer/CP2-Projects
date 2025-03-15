@@ -3,6 +3,7 @@
 import csv
 import random
 import time
+import math
 
 from character_creator import player_list_creator
 from checkers import intchecker
@@ -158,9 +159,9 @@ def battle(chosen_character,character_number):
                 print(f"\nThat hit did not kill the {monster['name']}.")
             
             #Monster attacks
-            character_health -= monster["strength"]
+            character_health -= math.floor(monster["strength"]/(chosen_character["defense"]/2))
             time.sleep(0.7)
-            print(f"\nThe {monster['name']} attacks {chosen_character['name']} and does {monster['strength']} dmg to {chosen_character['name']}. {chosen_character['name']} has {character_health} hp left.")
+            print(f"\nThe {monster['name']} attacks {chosen_character['name']} and does {math.floor(monster['strength']/(chosen_character['defense']/2))} dmg to {chosen_character['name']}. {chosen_character['name']} has {character_health} hp left.")
 
             if character_health <= 0:
                 print(f"\n{chosen_character['name']} has died.")
@@ -175,9 +176,9 @@ def battle(chosen_character,character_number):
         #While the monster is still alive
         while monster["health"] > 0:
             #Monster attacks
-            character_health -= monster["strength"]
+            character_health -= math.floor(monster["strength"]/(chosen_character["defense"]/2))
             time.sleep(0.7)
-            print(f"\nThe {monster['name']} attacks {chosen_character['name']} and does {monster['strength']} dmg to {chosen_character['name']}. {chosen_character['name']} has {character_health} hp left.")
+            print(f"\nThe {monster['name']} attacks {chosen_character['name']} and does {math.floor(monster['strength']/(chosen_character['defense']/2))} dmg to {chosen_character['name']}. {chosen_character['name']} has {character_health} hp left.")
 
             if character_health <= 0:
                 print(f"\n{chosen_character['name']} has died.")
@@ -186,9 +187,6 @@ def battle(chosen_character,character_number):
                 pass
 
             monster["health"] -= chosen_character["strength"] + 2
-            time.sleep(0.7)
-            print(f"\nYou attack the {monster['name']} and do {chosen_character['strength'] + 2} dmg to the {monster['name']}.")
-            
             time.sleep(0.7)
             print(f"\nYou attack the {monster['name']} and do {chosen_character['strength'] + 2} dmg to the {monster['name']}.")
             
