@@ -30,9 +30,9 @@ def battle_character(characters):
 
     if character_choice != None:
         if 1 <= character_choice and character_choice <= character_number:
-            
+
             chosen_character = characters[character_choice - 1]
-            print(f'You have chosen, {chosen_character["name"]}, to fight with.')
+            print(f'\nYou have chosen, {chosen_character["name"]}, to fight with.')
         else:
             print("\nThat character number does not exist, try again.")
             fighting_main()
