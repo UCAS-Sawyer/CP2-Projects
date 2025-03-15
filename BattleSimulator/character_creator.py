@@ -9,7 +9,7 @@ def player_list_creator():
     #List of all the characters
     characters = []
 
-    with open("BattleSimulator/characters.csv", "r") as file:
+    with open("BattleSimulator/csvs/characters.csv", "r") as file:
         csv_reader = csv.reader(file)
         next(csv_reader)
 
@@ -30,7 +30,7 @@ def player_list_creator():
 
 #Writing the character with all their stats onto the csv file
 def character_writer_to_file(health, strength, defense, speed, name):
-    with open("BattleSimulator/characters.csv", "a") as file:
+    with open("BattleSimulator/csvs/characters.csv", "a") as file:
         file.write(f"{name},{health},{strength},{defense},{speed},0\n")
         print(f"\nThe character {name} has been created.")
     return

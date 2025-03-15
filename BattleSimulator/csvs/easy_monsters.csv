@@ -1,0 +1,4 @@
+name,health,strength,defense,speed,xp
+Slime,10,1,0,1,10
+Skeleton,8,1,1,1,10
+Living Vine,5,2,0,5,10
