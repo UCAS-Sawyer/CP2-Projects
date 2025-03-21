@@ -21,8 +21,8 @@ Paragraph describing how to use the project.
 + Numpy  
 `pip install numpy`  
 
-+ Thrid library in the repository  
-`pip install code for the library`  
++ Faker 
+`pip install faker`  
 
 + Fourth library in the repository  
 `pip install code for the library`  

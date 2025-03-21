@@ -5,6 +5,10 @@ import csv
 from checkers import intchecker
 from checkers import name_checker
 
+#For generating random names and backrounds
+from faker import Faker
+fake= Faker()
+
 def player_list_creator():
     #List of all the characters
     characters = []
@@ -35,7 +39,21 @@ def character_writer_to_file(health, strength, defense, speed, name):
         file.write(f"{name},{health},{strength},{defense},{speed},1,0\n")
         print(f"\nThe character {name} has been created.")
     return
-    
+
+def random_name():
+    name = fake.name()
+    choice = input(f"\nDo you like the name {name}? 1. Yes, 2. No\n")
+
+    if choice == "1":
+        return name
+    elif choice == "2":
+        random_name()
+        return name
+    else:
+        print("\nThat is not an input.")
+        random_name()
+        return name
+
 #Creating the character
 def character_creator(characters):
     stat_points_left = 10
@@ -47,9 +65,22 @@ def character_creator(characters):
     #Error message
     not_valind_number = "\nThat is an invalid input.(not a valid number of points)"
 
-    #Getting name
-    name = name_checker(input("\nWelcome to the character creator! Please enter the name of your character.\n"), characters)
+    choice = input("\nWelcome to the character creator! Would you like to 1. input your own name, 2. generate a random name?\n")
+
+    if choice == "1":
+        #Getting name
+        name = name_checker(input("\nPlease enter the name of your character.\n"), characters)
+    elif choice == "2":
+        name = random_name()
+    else:
+        print("\nThat is not an option")
+        character_creator()
+        return
+    
+    #Telling them the name
     print(f"\nThe name of your character is now {name}.")
+
+
 
     #Checker for stat points left
     def stat_points_left_checker(new_stat):
