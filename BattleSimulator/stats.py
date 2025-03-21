@@ -39,25 +39,34 @@ def stats_main():
     
 #Not really working
 def stats(character):
-    plt.style.use('_mpl-gallery')
+    # Data for the bar graph
+    categories = ["Health", "Strength", "Defense", "Speed", "Level", "Current XP"]
+    values = [character["health"], character["strength"], character['defense'], character['speed'], character['level'], character['xp']]
+    colors = ['crimson', 'lightcoral', 'lightgray', 'cornflowerblue', 'gold', 'limegreen']
 
-    # make data:
-    x = 0.5 + np.arange(6)
-    y = [character["health"], character["strength"], character['defense'], character['speed'], character['level'], character['xp']]
+    # Create the bar graph
+    plt.bar(categories, values, color = colors)
 
-    # plot
-    fig, ax = plt.subplots()
+    # Add title and labels
+    plt.title(f'{character["name"]} Stats')
+    plt.xlabel('Stat Type')
+    plt.ylabel('Values')
 
-    ax.bar(x, y, width=1, edgecolor="white", linewidth=0.7)
-
-    ax.set(xlim=(0, 8), xticks=np.arange(1, 6),
-        ylim=(0, 100), yticks=np.arange(1, 100))
-
-    plt.bar_label = (["Health", "Strength", "Defense", "Speed", "Level", "Current XP"])
-    ax.set_ylabel('Stat value')
-    ax.set_title(f'Stats for {character["name"]}')
-
+    # Show the graph
     plt.show()
 
-    print("\nThe stats have been shown.")
+    # Data for the pie chart
+    labels = ['Health', 'Strength', 'Defense', 'Speed']
+    sizes = [character["health"], character["strength"], character['defense'], character['speed']]
+    colors = ['crimson', 'lightcoral', 'lightgray', 'cornflowerblue']
+
+    # Create the pie chart
+    plt.pie(sizes, labels=labels, colors=colors, autopct='%1.1f%%', shadow=True, startangle=140)
+
+    # Add title
+    plt.title(f'Stats distribution percentage for {character["name"]}')
+
+    # Show the chart
+    plt.show()
+    print("\nTheir stats have been shown.")
     return
