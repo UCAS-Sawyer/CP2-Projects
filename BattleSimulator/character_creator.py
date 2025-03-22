@@ -1,6 +1,7 @@
 #Sawyer Wood, Battle Simulator character creator
 
 import csv
+import random
 
 from checkers import intchecker
 from checkers import name_checker
@@ -27,16 +28,17 @@ def player_list_creator():
                 "defense" : int(row[3]),
                 "speed" : int(row[4]),
                 "level" : int(row[5]),
-                "xp" : int(row[6])
+                "xp" : int(row[6]),
+                "description" : row[7]
             }
             characters.append(player)
 
         return characters
 
 #Writing the character with all their stats onto the csv file
-def character_writer_to_file(health, strength, defense, speed, name):
+def character_writer_to_file(health, strength, defense, speed, name, description,):
     with open("BattleSimulator/csvs/characters.csv", "a") as file:
-        file.write(f"{name},{health},{strength},{defense},{speed},1,0\n")
+        file.write(f"{name},{health},{strength},{defense},{speed},1,0,{description}\n")
         print(f"\nThe character {name} has been created.")
     return
 
@@ -48,10 +50,13 @@ def character_creator(characters):
     defense = 1
     speed = 1
 
+    #List of hobbies
+    hobby = ["reading", "writing", "painting", "drawing", "dancing", "singing", "cycling", "hiking", "gardening", "photography", "playing chess", "playing video games", "cooking", "baking", "knitting", "woodworking", "swimming", "fishing", "bird watching", "yoga", "meditation", "scrapbooking", "collecting stamps", "traveling", "watching movies", "playing the guitar", "rock climbing", "surfing", "martial arts", "playing basketball"]
+
     #Error message
     not_valind_number = "\nThat is an invalid input.(not a valid number of points)"
 
-    choice = input("\nWelcome to the character creator! Would you like to 1. input your own name, 2. generate a random name?\n")
+    choice = input("\nWelcome to the character creator! Would you like to 1. Input your own name, 2. Generate a random name?\n")
 
     if choice == "1":
         #Getting name
@@ -76,7 +81,27 @@ def character_creator(characters):
     #Telling them the name
     print(f"\nThe name of your character is now {name}.")
 
+    choice = input("\nWould you like to 1. Input you own description, 2. Generate a random one?\n")
 
+    if choice == "1":
+        #Getting description
+        description = input("\nPlease enter your description of the character.\n")
+    elif choice == "2":
+        while choice != "1":
+            description = f"{name} is a {fake.catch_phrase()} person who loves {random.choice(hobby)}. Their favorite color is {fake.color_name()} and their favorite sentance is '{fake.sentence()}'"
+            choice = input(f"\nDo you like the discription {description}? 1. Yes, 2. No\n")
+
+            if choice == "1":
+                break
+            elif choice == "2":
+                continue
+            else:
+                print("\nThat is not an input.")
+                continue
+    else:
+        print("\nThat is not an option")
+        character_creator()
+        return
 
     #Checker for stat points left
     def stat_points_left_checker(new_stat):
@@ -89,7 +114,7 @@ def character_creator(characters):
         #If all the points are used, exit
         if stat_points_left == 0:
             print("\nYou have used all of your points, the othe stats will be set to their base values.")
-            character_writer_to_file(health, strength, defense, speed, name)
+            character_writer_to_file(health, strength, defense, speed, name, description)
             return
         else:
             return stat_points_left
@@ -133,11 +158,11 @@ def character_creator(characters):
                             #The rest of the points will go to speed
                             print(f"\nThe rest of your points will go to speed. The amount is {stat_points_left}")
                             if stat_points_left == 0:
-                                character_writer_to_file(health, strength, defense, speed, name)
+                                character_writer_to_file(health, strength, defense, speed, name, description)
                                 return
                             else:
                                 speed += stat_points_left
-                                character_writer_to_file(health, strength, defense, speed, name)
+                                character_writer_to_file(health, strength, defense, speed, name, description)
                         else:
                             print(not_valind_number)
                 else:

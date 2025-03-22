@@ -39,6 +39,8 @@ def stats_main():
     
 #Not really working
 def stats(character):
+    print("\n", character['description'])
+    print("\nThe bar graph of their stats have been shown, close the window to move onto the next graph.")
     # Data for the bar graph
     categories = ["Health", "Strength", "Defense", "Speed", "Level", "Current XP"]
     values = [character["health"], character["strength"], character['defense'], character['speed'], character['level'], character['xp']]
@@ -55,6 +57,7 @@ def stats(character):
     # Show the graph
     plt.show()
 
+    print("\nClose this window to exit.")
     # Data for the pie chart
     labels = ['Health', 'Strength', 'Defense', 'Speed']
     sizes = [character["health"], character["strength"], character['defense'], character['speed']]
@@ -68,5 +71,4 @@ def stats(character):
 
     # Show the chart
     plt.show()
-    print("\nTheir stats have been shown.")
     return
