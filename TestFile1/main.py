@@ -1,8 +1,7 @@
-from faker import Faker
+import pandas as pd
 
-fake = Faker()
+# Load the entire CSV
+df = pd.read_csv('BattleSimulator/csvs/characters.csv')
 
-# Generate a person description
-person_description = fake.hobby()
-
-print(person_description)
+# Display the DataFrame
+print(df)

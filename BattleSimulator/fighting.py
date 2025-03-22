@@ -4,6 +4,7 @@ import csv
 import random
 import time
 import math
+import pandas as pd
 
 from character_creator import player_list_creator
 from checkers import intchecker
@@ -51,17 +52,19 @@ def battle_character(characters):
     character_number = 0
 
     #Printing all the characters
-    for character in characters:
-        character_number += 1
-        print(f"{character_number}. Name: {character['name']}, Health: {character['health']}, Strength: {character['strength']}, Defense: {character['defense']}, Speed: {character['speed']}, Level: {character['level']}, Xp: {character['xp']}")
-    
+    # Load the entire CSV
+    df = pd.read_csv('BattleSimulator/csvs/characters.csv')
+
+    # Display the DataFrame
+    print(df)
+
     #Choosing the character and error handling
     character_choice = intchecker(input("\nEnter the number of the character: "))
 
     if character_choice != None:
-        if 1 <= character_choice and character_choice <= character_number:
+        if 0 <= character_choice and character_choice <= character_number:
 
-            chosen_character = characters[character_choice - 1]
+            chosen_character = characters[character_choice]
             print(f'\nYou have chosen, {chosen_character["name"]}, to fight with.')
             battle(chosen_character,character_choice)
             return
