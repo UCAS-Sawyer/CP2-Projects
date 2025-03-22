@@ -53,10 +53,10 @@ def battle_character(characters):
 
     #Printing all the characters
     # Load the entire CSV
-    df = pd.read_csv('BattleSimulator/csvs/characters.csv')
+    character_csv = pd.read_csv('BattleSimulator/csvs/characters.csv')
 
     # Display the DataFrame
-    print(df)
+    print(character_csv)
 
     #Choosing the character and error handling
     character_choice = intchecker(input("\nEnter the number of the character: "))
@@ -90,7 +90,7 @@ def battle(chosen_character,character_number):
 
         with open("BattleSimulator/csvs/characters.csv", "w", newline='') as file:
             writer = csv.writer(file)
-            lines[character_number] = chosen_character["name"],chosen_character["health"],chosen_character["strength"],chosen_character["defense"],chosen_character["speed"],chosen_character["level"],chosen_character["xp"]
+            lines[character_number + 1] = chosen_character["name"],chosen_character["health"],chosen_character["strength"],chosen_character["defense"],chosen_character["speed"],chosen_character["level"],chosen_character["xp"],chosen_character["description"]
             writer.writerows("")
             writer.writerows(lines)
             return

@@ -3,6 +3,7 @@
 #Required libraries
 import matplotlib.pyplot as plt
 import numpy as np
+import pandas as pd
 
 from character_creator import player_list_creator
 from checkers import intchecker
@@ -39,8 +40,15 @@ def stats_main():
     
 #Not really working
 def stats(character):
-    print("\n", character['description'])
+    character_csv = pd.read_csv('BattleSimulator/csvs/characters.csv')
+    character_csv_statistics = character_csv.describe()
+    print(f"\nFirst, before we show specific stats of {character['name']}, here are the general statistics:\n{character_csv_statistics}")
+
+    move_on = input("\nEnter anything to continue.\n")
+
+    print("\nNow for", character['description'])
     print("\nThe bar graph of their stats have been shown, close the window to move onto the next graph.")
+
     # Data for the bar graph
     categories = ["Health", "Strength", "Defense", "Speed", "Level", "Current XP"]
     values = [character["health"], character["strength"], character['defense'], character['speed'], character['level'], character['xp']]
