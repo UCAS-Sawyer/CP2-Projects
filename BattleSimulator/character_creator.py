@@ -40,20 +40,6 @@ def character_writer_to_file(health, strength, defense, speed, name):
         print(f"\nThe character {name} has been created.")
     return
 
-def random_name():
-    name = fake.name()
-    choice = input(f"\nDo you like the name {name}? 1. Yes, 2. No\n")
-
-    if choice == "1":
-        return name
-    elif choice == "2":
-        random_name()
-        return name
-    else:
-        print("\nThat is not an input.")
-        random_name()
-        return name
-
 #Creating the character
 def character_creator(characters):
     stat_points_left = 10
@@ -71,7 +57,17 @@ def character_creator(characters):
         #Getting name
         name = name_checker(input("\nPlease enter the name of your character.\n"), characters)
     elif choice == "2":
-        name = random_name()
+        while choice != "1":
+            name = fake.name()
+            choice = input(f"\nDo you like the name {name}? 1. Yes, 2. No\n")
+
+            if choice == "1":
+                break
+            elif choice == "2":
+                continue
+            else:
+                print("\nThat is not an input.")
+                continue
     else:
         print("\nThat is not an option")
         character_creator()
