@@ -6,7 +6,7 @@ from stats import stats_main as stats
 
 #This is the main function
 def main():
-    choice = input("\nWhat would you like to do, 1: Create A Character, 2: Fight With A Character, 3: See Character Stats, 4: Exit?\n")
+    choice = input("\nWhat would you like to do, 1: Create A Character, 2: Fight With A Character, 3: See Stats of things, 4: Exit?\n")
 
     if choice == "1":
         character_creation_main()

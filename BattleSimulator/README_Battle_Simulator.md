@@ -2,7 +2,7 @@
 
 ## Project Description  
 ---
-Paragraph describing the purpose of you project and what it does.  
+It is a little game where you can create your own character to fight monster and level up to get stronger. There are some other features like stats with graphs and show of ram usage.
 
 ## Installation  
 ---

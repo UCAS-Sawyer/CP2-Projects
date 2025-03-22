@@ -5,6 +5,8 @@ import random
 import time
 import math
 import pandas as pd
+from faker import Faker
+fake= Faker()
 
 from character_creator import player_list_creator
 from checkers import intchecker
@@ -98,6 +100,11 @@ def battle(chosen_character,character_number):
     #Doing lvl up stuff
     def monster_dead():
         nonlocal chosen_character, monster
+
+        bad_adj = ["angry", "arrogant", "bitter", "careless", "clumsy", "cruel", "deceitful", "defiant", "fearful", "greedy", "grumpy", "harsh", "ignorant", "impatient", "insecure", "lazy", "malicious", "narrow-minded", "pessimistic", "rude", "selfish", "stubborn", "tactless", "unreliable", "vindictive"]
+
+        #Faker is used to create a victory phrase
+        print(f"\nI, the {fake.catch_phrase()} man has killed this {fake.random_element(bad_adj)} {monster['name']}!")
 
         #Give the character xp
         new_xp = chosen_character["xp"] + monster["xp"]

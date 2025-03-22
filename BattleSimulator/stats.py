@@ -11,36 +11,77 @@ from checkers import intchecker
 def stats_main():
     character_number = 0
 
-    #Getting a list of all the characters
-    character_list = player_list_creator()
-    print("\nWhich character do you want to se their stats?")
+    choice = input("\nWhat do you want to do, 1. See the stats of a character, 2. CSV Memory usage")
 
-    #Printing all the characters
-    for character in character_list:
-        character_number += 1
-        print(f"{character_number}. Name: {character['name']}")
+    if choice == "1":
+        #Getting a list of all the characters
+        character_list = player_list_creator()
+        print("\nWhich character do you want to see their stats?\n")
 
-    #Choosing the character and error handling
-    character_choice = intchecker(input("\nEnter the number of the character: "))
+        #Printing all the characters
+        for character in character_list:
+            character_number += 1
+            print(f"{character_number}. Name: {character['name']}")
 
-    if character_choice != None:
-        if 1 <= character_choice and character_choice <= character_number:
+        #Choosing the character and error handling
+        character_choice = intchecker(input("\nEnter the number of the character: \n"))
 
-            chosen_character = character_list[character_choice - 1]
-            print(f'\nYou have chosen, {chosen_character["name"]}, to see their stats.')
-            stats(chosen_character)
-            return
+        if character_choice != None:
+            if 1 <= character_choice and character_choice <= character_number:
+
+                chosen_character = character_list[character_choice - 1]
+                print(f'\nYou have chosen, {chosen_character["name"]}, to see their stats.\n')
+                stats(chosen_character)
+                return
+            else:
+                print("\nThat character number does not exist, try again.")
+                stats_main()
+                return
         else:
-            print("\nThat character number does not exist, try again.")
             stats_main()
             return
+    elif choice == "2":
+        memory_usage()
+        return
     else:
+        print("\nThat is not a valid input(not 1 or 2)")
         stats_main()
         return
-    
-#Not really working
+
+def memory_usage():
+
+    def memory_usage_check(filepath):
+        # Load the entire CSV
+        df = pd.read_csv(filepath)
+
+        # Display the memory usage
+        print("\n", df.memory_usage(deep=True))  # Check memory usage
+        return
+
+    choice = input("\nWhich csv file do you want to see the memory usage for?\n1. Characters\n2. Easy Monsters\n3. Medium Monsters\n4. Hard Monsters\n")
+
+
+    if choice == "1":
+        filepath = "BattleSimulator/csvs/characters.csv"
+        memory_usage_check(filepath)   
+    elif choice == "2":
+        filepath = "BattleSimulator\csvs\easy_monsters.csv"
+        memory_usage_check(filepath) 
+    elif choice == "3":
+        filepath = "BattleSimulator\csvs\medium_monsters.csv"
+        memory_usage_check(filepath) 
+    elif choice == "4":
+        filepath = "BattleSimulator\csvs\hard_monsters.csv"
+        memory_usage_check(filepath) 
+    else:
+        print("\nThat is not a valid input.")
+        memory_usage()
+        return
+
+#Displays stats for characters
 def stats(character):
-    character_csv = pd.read_csv('BattleSimulator/csvs/characters.csv')
+    #Only loading the reqired columns for better efficiency
+    character_csv = pd.read_csv('BattleSimulator/csvs/characters.csv', usecols=['Name', 'Health', 'Strength', 'Defense', 'Speed', 'Level', 'XP'])
     character_csv_statistics = character_csv.describe()
     print(f"\nFirst, before we show specific stats of {character['name']}, here are the general statistics:\n{character_csv_statistics}")
 
