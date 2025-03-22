@@ -51,7 +51,15 @@ Short paragraph about you(Each member of the group, includes contact for profess
 
 ## Change Log  
 ---
-Not used for this class.  
+Not used for this class, but this is the stuff I did for the assignment.
++ Bar chart showing stats(Matplotlib)
++ Pie chart showing distribution of stats(Matplotlib)
++ Random name generation(Faker)
++ Random description generation(Faker)
++ Random victory phrase(Faker)
++ Tables for displaying csv(Pandas)
++ Loading only necessary columns(Pandas)
++ Displaying csv ram usage(Pandas)
 
 ## License
 ---
