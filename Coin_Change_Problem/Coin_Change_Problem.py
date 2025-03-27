@@ -26,7 +26,7 @@ def coin_change_main():
             currency_type()
             return currency
         
-        print(f"You have selected the currecy {currency}.")
+        print(f"\nYou have selected the currecy {currency}.")
         return currency
 
     def reading_csv():
