@@ -2,6 +2,8 @@
 
 import csv
 
+from checkers import float_checker
+
 def coin_change_main():
 
     def currency_type():
@@ -47,7 +49,7 @@ def coin_change_main():
 
     currency = currency_type()
     coins_and_bills = reading_csv()
-    amount = float(input(f"\nHow much {currency} are you going to calculate?\n"))
+    amount = float_checker(input(f"\nHow much {currency} are you going to calculate?\n"), currency)
 
     if currency == "Japanese-Yen":
         amount = int(amount)
@@ -81,9 +83,8 @@ def solve(coins_and_bills, amount, currency):
         else:
             money_count[money] = 1
     
-    for money, count in money_count.items():
-        print(f"You will need:\n{money}: {count}")
-        
+    print("\nYou will need:")
 
+    for money, count in money_count.items():
+        print(f"{money}: {count}")
         
-    
