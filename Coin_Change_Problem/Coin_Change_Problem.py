@@ -49,6 +49,7 @@ def coin_change_main():
 
     currency = currency_type()
     coins_and_bills = reading_csv()
+    
     amount = float_checker(input(f"\nHow much {currency} are you going to calculate?\n"), currency)
 
     if currency == "Japanese-Yen":
