@@ -3,10 +3,7 @@
 import csv
 
 def coin_change_main():
-    currency = currency_type()
-    coins_and_bills = reading_csv()
-    print(coins_and_bills)
-    
+
     def currency_type():
         currencies = "1. US Dollar, 2. Euro, 3. Pound, 4. Japanese Yen"
         currency = None
@@ -20,7 +17,7 @@ def coin_change_main():
         elif currecny_type_choice == "3":
             currency = "Pound"
         elif currecny_type_choice == "4":
-            currency = "JYen"
+            currency = "Japanese-Yen"
         else:
             print("\nThat is not a valid input.")
             currency_type()
@@ -47,3 +44,46 @@ def coin_change_main():
                 coins_and_bills.append(coin_or_bill)
 
             return coins_and_bills
+
+    currency = currency_type()
+    coins_and_bills = reading_csv()
+    amount = float(input(f"\nHow much {currency} are you going to calculate?\n"))
+
+    if currency == "Japanese-Yen":
+        amount = int(amount)
+    else:
+        amount = round(int(amount*100),2)
+
+    
+    solve(coins_and_bills, amount, currency)
+
+def solve(coins_and_bills, amount, currency):
+
+    x = 0
+    money_used = []
+
+    while amount > 0:
+        amount -= coins_and_bills[x]["amount"]
+
+        if amount < 0:
+            amount += coins_and_bills[x]["amount"]
+            x += 1
+        elif amount == 0:
+            money_used.append(coins_and_bills[x]["name"])
+            break
+        else:
+            money_used.append(coins_and_bills[x]["name"])
+    
+    money_count = {}
+    for money in money_used:
+        if money in money_count:
+            money_count[money] += 1
+        else:
+            money_count[money] = 1
+    
+    for money, count in money_count.items():
+        print(f"You will need:\n{money}: {count}")
+        
+
+        
+    
