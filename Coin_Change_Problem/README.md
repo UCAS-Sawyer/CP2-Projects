@@ -11,7 +11,7 @@ Not used for this class.
 ## Execution And Usage  
 ---
 All you have to do is pick one of the four provided currencies then input the amount of money you want it to calculate and you should recive an output like this.
-![image](Coin_Change_Problem\Example1.png)  
+![image](Example1.png)  
 
 ## Used Technologies  
 ---
