@@ -5,6 +5,5 @@ def float_checker(inputa, currency):
         inputa = float(inputa)
     except:
         print("\nThat is not a number, try again.")
-        inputa = input(f"\nHow much {currency} are you going to calculate?\n")
-        float_checker(inputa, currency)
+        inputa = float_checker(input(f"\nHow much {currency} are you going to calculate?\n"), currency)
     return inputa
