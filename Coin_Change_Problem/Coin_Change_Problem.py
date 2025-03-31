@@ -8,25 +8,26 @@ def coin_change_main():
 
     def currency_type():
         currencies = "1. US Dollar, 2. Euro, 3. Pound, 4. Japanese Yen"
+
         currency = None
 
-        currecny_type_choice = input(f"\nWhich available currecny are you inputing? {currencies}\n")
+        while currency == None:
+            currecny_type_choice = input(f"\nWhich available currecny are you inputing? {currencies}\n")
 
-        if currecny_type_choice == "1":
-            currency = "USD"
-        elif currecny_type_choice == "2":
-            currency = "Euro"
-        elif currecny_type_choice == "3":
-            currency = "Pound"
-        elif currecny_type_choice == "4":
-            currency = "Japanese-Yen"
-        else:
-            print("\nThat is not a valid input.")
-            currency_type()
+            if currecny_type_choice == "1":
+                currency = "USD"
+            elif currecny_type_choice == "2":
+                currency = "Euro"
+            elif currecny_type_choice == "3":
+                currency = "Pound"
+            elif currecny_type_choice == "4":
+                currency = "Japanese-Yen"
+            else:
+                print("\nThat is not a valid input.")
+                continue
+            
+            print(f"\nYou have selected the currecy {currency}.")
             return currency
-        
-        print(f"\nYou have selected the currecy {currency}.")
-        return currency
 
     def reading_csv():
         #List of all the coins and bills
