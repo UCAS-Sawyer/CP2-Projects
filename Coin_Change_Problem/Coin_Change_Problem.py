@@ -54,7 +54,7 @@ def coin_change_main():
     amount = float_checker(input(f"\nHow much {currency} are you going to calculate?\n"), currency)
 
     if currency == "Japanese-Yen":
-        amount = int(amount)
+        amount = round(int(amount),0)
     else:
         amount = round(int(amount*100),2)
 
