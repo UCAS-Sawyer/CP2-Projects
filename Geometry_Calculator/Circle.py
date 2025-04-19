@@ -2,6 +2,7 @@
 
 from checkers import floatchecker, unitchecker
 import matplotlib.pyplot as plt
+import csv
 
 class Circle:
     # Calculate the area of the circle
@@ -11,11 +12,23 @@ class Circle:
     # Calculate the circumference of the circle
     def circumference(self):
         return round(2 * 3.14159 * self.radius, 2)
+    
+    # Static method to explain the formulas
+    @staticmethod
+    def explain_formulas():
+        return "Area = π × radius², Circumference = 2 × π × radius"
 
     # Display the results (area, circumference, and shape)
     def display_results(self):
         self.area_measurement = self.area()
         self.circumference_length = self.circumference()
+        # Display the explanation of formulas
+        print(self.explain_formulas())
+
+        with open("Geometry_Calculator/Shapes.csv", "a", newline='') as file:
+            writer = csv.writer(file)
+            writer.writerow(["Circle", self.radius, self.area_measurement, self.circumference_length, self.unit])
+
         self.showshape()
 
     # Visualize the circle using matplotlib
@@ -52,5 +65,6 @@ class Circle:
         self.unit = unitchecker(input("\nWhat unit of measurement are you using?(Make sure it is like, mm, cm, in, ft, ect..)\n"))
         # Get the radius of the circle from the user
         self.radius = floatchecker(input("\nWhat is the radius of the circle:\n"), "radius")
+
         # Display the results
         self.display_results()

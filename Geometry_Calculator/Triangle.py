@@ -3,6 +3,7 @@
 # Import necessary modules
 from checkers import floatchecker, unitchecker
 import matplotlib.pyplot as plt
+import csv
 
 class Triangle:
 
@@ -14,11 +15,23 @@ class Triangle:
     # Method to calculate the perimeter of the triangle
     def perimeter(self):
         return self.width + self.side2 + self.side3
+    
+    @staticmethod
+    def explain_formulas():
+        return (
+            "Area = √[s(s-a)(s-b)(s-c)], where s = (a + b + c) / 2 (Heron's formula)\n"
+            "Perimeter = a + b + c"
+        )
 
     # Method to display the results (area, perimeter, and shape)
     def display_results(self):
         self.area_measurement = self.area()  # Calculate area
         self.perimeter_length = self.perimeter()  # Calculate perimeter
+
+        with open("Geometry_Calculator/Shapes.csv", "a", newline='') as file:
+            writer = csv.writer(file)
+            writer.writerow(["Triangle", self.width, self.side2, self.side3, self.area_measurement, self.perimeter_length, self.unit])
+        
         self.showshape()  # Display the triangle shape
 
     # Method to plot and display the triangle shape
@@ -70,6 +83,9 @@ class Triangle:
         
         # Check if the triangle is valid
         if self.width + self.side2 > self.side3 and self.width + self.side3 > self.side2 and self.side2 + self.side3 > self.width:
+            # Display the explanation of formulas
+            print(self.explain_formulas())
+
             self.display_results()  # Display results if the triangle is valid
         else:
             print("\nThe side lengths do not make a triangle. Try again.")
