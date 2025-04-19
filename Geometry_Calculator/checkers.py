@@ -1,30 +1,30 @@
 #Error handling
 
 def floatchecker(number, TypeONumber):
-    if number > 0:
-        try:
-            number = float(number)
+    try:
+        number = float(number)
+        if number > 0:
             return number
-        except:
-            print("\nPlease enter a valid number.")
+        else:
+            print("\nPlease enter a number greater than 0.")
             number = floatchecker(input(f"\nRetry to enter the {TypeONumber}: "), TypeONumber)
             return number
-    else:
+    except:
         print("\nPlease enter a valid number.")
         number = floatchecker(input(f"\nRetry to enter the {TypeONumber}: "), TypeONumber)
         return number
 
 def int_checker(number): 
-    if number > 0:
-        try:
-            number = int(number)
+    try:
+        number = int(number)
+        if number > 0:
             return number
-        except:
-            print("\nPlease enter a valid number.")
+        else:
+            print("\nPlease enter a number greater than 0.")
             number = int_checker(input("\nRetry to enter the number: "))
             return number
-    else:
-        print("\nPlease enter a valid number.")
+    except:
+        print("\nPlease enter a valid integer.")
         number = int_checker(input("\nRetry to enter the number: "))
         return number
 
