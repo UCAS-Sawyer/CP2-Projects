@@ -45,3 +45,4 @@ class Rectangle:
 
         # Display the results
         self.display_results()
+    

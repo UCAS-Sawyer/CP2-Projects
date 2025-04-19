@@ -9,6 +9,15 @@ def floatchecker(number, TypeONumber):
         number = floatchecker(input(f"\nRetry to enter the {TypeONumber}: "), TypeONumber)
         return number
 
+def int_checker(number): 
+    try:
+        number = int(number)
+        return number
+    except:
+        print("\nPlease enter a valid number.")
+        number = int_checker(input("\nRetry to enter the number: "))
+        return number
+
 def unitchecker(unit):
     unit = unit.lower()
     units = ["mm", "cm", "m", "km", "in", "ft", "yd", "mi", "nmi", "au", "ly", "pc", "fathoms", "rods", "chains"]
