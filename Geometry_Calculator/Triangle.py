@@ -19,7 +19,7 @@ class Triangle:
     @staticmethod
     def explain_formulas():
         return (
-            "Area = √[s(s-a)(s-b)(s-c)], where s = (a + b + c) / 2 (Heron's formula)\n"
+            "\nArea = √[s(s-a)(s-b)(s-c)], where s = (a + b + c) / 2 (Heron's formula)\n"
             "Perimeter = a + b + c"
         )
 

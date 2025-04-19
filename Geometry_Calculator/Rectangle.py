@@ -17,7 +17,7 @@ class Rectangle:
     # Static method to explain the formulas
     @staticmethod
     def explain_formulas():
-        return "Area = length × width, Perimeter = 2 × (length + width)"
+        return "\nArea = length × width, Perimeter = 2 × (length + width)"
 
     # Method to display the results (area, perimeter, and shape)
     def display_results(self):

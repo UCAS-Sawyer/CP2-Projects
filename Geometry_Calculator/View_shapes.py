@@ -6,11 +6,12 @@ import matplotlib.pyplot as plt
 
 class View_shapes:
     def __init__(self):
+        # Ask the user to choose an option
         choice = input("\nWould you like to 1. View All Shapes, 2. View Selected Shape?\n").strip()
         if choice == "1":
-            self.view_all_shapes()
+            self.view_all_shapes()  # View all shapes
         elif choice == "2":
-            self.view_selected_shape()
+            self.view_selected_shape()  # View a specific shape
         else:
             print("\nThat is not an option.")
             self.View_shapes()  # Restart the view process
@@ -18,21 +19,23 @@ class View_shapes:
     def view_all_shapes(self):
         x = 0
         # Method to view all shapes in the CSV file
-
         with open("Geometry_Calculator/Shapes.csv", "r") as file:
             reader = csv.reader(file)
             print("\nAll Shapes:")
             for row in reader:
                 x += 1
+                # Print details for each shape based on its type
                 if row[0] == "Rectangle":
                     print(f"\n{x}. Shape: {row[0]}, Length: {row[1]} {row[5]}, Width: {row[2]} {row[5]}, Area: {row[3]} {row[5]}², Perimeter: {row[4]} {row[5]}")
                 elif row[0] == "Triangle":
                     print(f"\n{x}. Shape: {row[0]}, Side1: {row[1]} {row[6]}, Side2: {row[2]} {row[6]}, Side3: {row[3]} {row[6]}, Area: {row[4]} {row[6]}², Perimeter: {row[5]} {row[6]}")
                 elif row[0] == "Circle":
                     print(f"\n{x}. Shape: {row[0]}, Radius: {row[1]} {row[4]}, Area: {row[2]} {row[4]}², Circumference: {row[3]} {row[4]}")
-    
+
     def view_selected_shape(self):
+        # View all shapes first
         self.view_all_shapes()
+        # Ask the user to select a shape
         choice = int_checker(input("\nEnter the number of the shape you want to view:\n")) - 1
 
         with open("Geometry_Calculator/Shapes.csv", "r") as file:
@@ -42,6 +45,7 @@ class View_shapes:
                 shape = shapes[choice]
             else:
                 print("\nInvalid selection. Please try again.")
+        # Handle rectangle visualization
         if shape[0] == "Rectangle":
             self.length = float(shape[1])
             self.width = float(shape[2])
@@ -49,6 +53,7 @@ class View_shapes:
             self.perimeter_length = float(shape[4])
             self.unit = shape[5]
             
+            # Plot the rectangle
             fig, ax = plt.subplots()
             rectangle = plt.Rectangle((0, 0), self.length, self.width, edgecolor='blue', facecolor='lightblue')
             ax.add_patch(rectangle)
@@ -63,6 +68,7 @@ class View_shapes:
             plt.text(self.length / 2, self.width / 2, f"Area: {self.area_measurement} {self.unit}\nPerimeter: {self.perimeter_length} {self.unit}", color="black", ha="center", va="center", fontsize=10, bbox=dict(facecolor='white', alpha=0.5))
             plt.show()
         
+        # Handle triangle visualization
         elif shape[0] == "Triangle":
             self.width = float(shape[1])
             self.side2 = float(shape[2])
@@ -105,8 +111,8 @@ class View_shapes:
             # Show the plot
             plt.show()
         
+        # Handle circle visualization
         elif shape[0] == "Circle":
-            
             self.radius = float(shape[1])
             self.area_measurement = float(shape[2])
             self.circumference_length = float(shape[3])
@@ -137,5 +143,3 @@ class View_shapes:
 
             # Show the plot
             plt.show()
-
-

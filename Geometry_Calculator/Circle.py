@@ -16,7 +16,7 @@ class Circle:
     # Static method to explain the formulas
     @staticmethod
     def explain_formulas():
-        return "Area = π × radius², Circumference = 2 × π × radius"
+        return "\nArea = π × radius², Circumference = 2 × π × radius"
 
     # Display the results (area, circumference, and shape)
     def display_results(self):
