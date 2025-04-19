@@ -39,7 +39,7 @@ Not used for this class.
 
 ## Contributors  
 ---
-+ Copilot - Helped graph the shapes using matplotlib
++ Copilot - Helped graph the shapes using matplotlib and comments
 + Person who helped 2 - what they did  
 + Person who helped 3 - what they did  
 + Person who helped 4 - what they did  

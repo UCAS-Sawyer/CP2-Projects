@@ -1,6 +1,8 @@
 # Sawyer Wood, Geometry Calculator
 
-from ShapesNMath import Rectangle, Triangle, Circle
+from Rectangle import Rectangle
+from Triangle import Triangle
+from Circle import Circle
 
 #This is the main function
 def main():
