@@ -36,7 +36,8 @@ class Rectangle:
         self.length = floatchecker(input("\nWhat is the length of the rectangle:\n"), "length")
         self.width = floatchecker(input("\nWhat is the width of the rectangle:\n"), "width")
         self.display_results()
-    
+
+
 class Triangle:
 
     def area(self):
@@ -65,23 +66,41 @@ class Triangle:
         fig, ax = plt.subplots()
         triangle = plt.Polygon([(0, 0), (x2, y2), (x3, y3)], edgecolor='green', facecolor='lightgreen')
         ax.add_patch(triangle)
+
+        # Plot the height as a dashed line
+        ax.plot([x3, x3], [0, y3], color='blue', linestyle='--', linewidth=2)  # Dashed line for height
+
+        # Set plot limits and aspect ratio
         ax.set_xlim(0, max(self.width, x3) + 1)
         ax.set_ylim(0, y3 + 1)
         ax.set_aspect('equal', adjustable='box')
+
+        # Add title, labels, and grid
         plt.title(f"Triangle: Sides={self.width}{self.unit}, {self.side2}{self.unit}, {self.side3}{self.unit}")
         plt.xlabel("X")
         plt.ylabel("Y")
         plt.grid(True)
-        plt.text(self.width / 3, y3 / 3, f"Area: {self.area_measurement}{self.unit}\nPerimeter: {self.perimeter_length}{self.unit}", color="black", ha="center", va="center", fontsize=10, bbox=dict(facecolor='white', alpha=0.5))
-        plt.show()
 
+        # Add area, perimeter, and height as text
+        plt.text(self.width / 3, y3 / 3, f"Area: {self.area_measurement}{self.unit}\nPerimeter: {self.perimeter_length}{self.unit}", 
+                 color="black", ha="center", va="center", fontsize=10, bbox=dict(facecolor='white', alpha=0.5))
+        plt.text(x3 + 0.2, y3 / 2, f"Height: {round(y3, 2)}{self.unit}", color="blue", fontsize=10)  # Label the height
+
+        # Show the plot
+        plt.show()
 
     def __init__(self):
         self.unit = unitchecker(input("\nWhat unit of measurement are you using?(Make sure it is like, mm, cm, in, ft, etc..)\n"))
         self.width = floatchecker(input("\nWhat is the length of the first side of the triangle (base):\n"), "base")
         self.side2 = floatchecker(input("\nWhat is the length of the second side of the triangle:\n"), "second side")
         self.side3 = floatchecker(input("\nWhat is the length of the third side of the triangle:\n"), "third side")
-        self.display_results()
+        # Check if the triangle is valid
+        if self.width + self.side2 > self.side3 and self.width + self.side3 > self.side2 and self.side2 + self.side3 > self.width:
+            self.display_results()
+        else:
+            print("\nThe side lengths do not make a triangle. Try again.")
+            Triangle()
+
 
 class Circle:
 
