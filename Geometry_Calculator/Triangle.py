@@ -51,8 +51,8 @@ class Triangle:
         plt.grid(True)
 
         # Add area, perimeter, and height as text
-        plt.text(self.width / 3, y3 / 3, f"Area: {self.area_measurement} {self.unit}\nPerimeter: {self.perimeter_length} {self.unit}", 
-                 color="black", ha="center", va="center", fontsize=10, bbox=dict(facecolor='white', alpha=0.5))
+        plt.text(self.width / 2, y3 / 3, f"Area: {self.area_measurement} {self.unit}\nPerimeter: {self.perimeter_length} {self.unit}", 
+                color="black", ha="center", va="center", fontsize=10, bbox=dict(facecolor='white', alpha=0.5))
         plt.text(x3 + 0.2, y3 / 2, f"Height: {round(y3, 2)} {self.unit}", color="blue", fontsize=10)  # Label the height
 
         # Show the plot
