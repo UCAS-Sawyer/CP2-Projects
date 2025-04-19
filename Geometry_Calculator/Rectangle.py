@@ -26,7 +26,7 @@ class Rectangle:
 
         with open("Geometry_Calculator/Shapes.csv", "a", newline='') as file:
             writer = csv.writer(file)
-            writer.writerow(["Rectangle",self.length, self.width, self.area_measurement, self.perimeter_length, self.unit])
+            writer.writerow(["Rectangle", self.length, self.width, self.area_measurement, self.perimeter_length, self.unit])
 
         self.showshape()  # Display the rectangle shape
 

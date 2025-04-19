@@ -34,7 +34,7 @@ Not used for this class.
 
 ## Contributors  
 ---
-+ Copilot - Helped graph the shapes using matplotlib and comments  
++ Copilot - Helped graph the shapes using matplotlib and comments and debugging
 + Perrin - Tester  
 + Person who helped 3 - what they did  
 + Person who helped 4 - what they did  
